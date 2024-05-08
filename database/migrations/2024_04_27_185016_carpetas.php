@@ -11,7 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('carpetas', function (Blueprint $table) {
+            $table->id('carpeta_id');
+            $table->string('nom');
+            $table->string('ruta');
+            $table->unsignedBigInteger('empresa_id');
+            $table->unsignedBigInteger('usuari_id');
+            $table->foreign('empresa_id')->references('empresa_id')->on('empresa');
+            $table->foreign('usuari_id')->references('usuari_id')->on('usuaris');
+            $table->timestamps();
+        });
     }
 
     /**

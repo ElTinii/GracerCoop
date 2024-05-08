@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +32,7 @@ Route::get('/contacte', function () {
     return view('contacte');
 })->name('contacte');
 
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 
 require __DIR__.'/auth.php';

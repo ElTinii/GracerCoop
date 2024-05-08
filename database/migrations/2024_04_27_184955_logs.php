@@ -11,7 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('logs', function (Blueprint $table) {
+            $table->id('log_id');
+            $table->timestamp('data')->nullable();
+            $table->timestamp('hora')->nullable();
+            $table->unsignedBigInteger('usuari_id');
+            $table->foreign('usuari_id')->references('usuari_id')->on('usuaris');
+            $table->string('accio');
+            $table->string('ipClient');
+        });
     }
 
     /**
