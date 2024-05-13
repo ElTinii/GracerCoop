@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,7 +35,14 @@ Route::get('/contacte', function () {
     return view('contacte');
 })->name('contacte');
 
+
+Route::get('/perfil', function () {
+    return view('perfil');
+})->name('perfil');
+
+Route::middleware('auth')->group(function () {
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+});
 
 require __DIR__.'/auth.php';

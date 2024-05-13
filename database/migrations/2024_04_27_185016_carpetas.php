@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('nom');
             $table->string('ruta');
             $table->unsignedBigInteger('empresa_id');
-            $table->unsignedBigInteger('usuari_id');
+            $table->unsignedBigInteger('id');
             $table->foreign('empresa_id')->references('empresa_id')->on('empresa');
-            $table->foreign('usuari_id')->references('usuari_id')->on('usuaris');
+            $table->foreign('id')->references('id')->on('users');
             $table->timestamps();
         });
     }

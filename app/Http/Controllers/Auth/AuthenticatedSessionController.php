@@ -9,6 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -25,12 +28,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
+        $request->authenticate(); 
         $request->session()->regenerate();
-
+        Log::info('El usuario está entrando.');
         if (Auth::user()->admin) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->action([AdminController::class, 'dashboard']);
         } else {
             return redirect()->route('user.dashboard');
         }
@@ -54,8 +56,4 @@ class AuthenticatedSessionController extends Controller
      *
      * @return string
      */
-    public function username()
-    {
-        return 'username';
-    }
 }

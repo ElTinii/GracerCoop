@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
-    <title>Part Privada</title>
+    <title>El meu perfil</title>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -38,12 +38,15 @@
     </nav>
 </header>
 <body>
-    <div class="row">
-    <div id="esquerra">
-        <h4>Empresas</h4>
-    </div>
-    <div id="main">
-        <h2 id="titol">Benvingut a la seva zona personal</h2>
+    <div class="page-container">
+    <div class="profile-container">
+        <h1>El meu Perfil</h1>
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="username" value="{{ Auth::user()->username }}"><br>
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email" value="{{ Auth::user()->email }}">
+        <input type="submit" value="Enviar">
+        <a href="/"><button class="danger">Tornar</button></a>
     </div>
     </div>
 </body>

@@ -15,7 +15,7 @@ class SeederUsuaris extends Seeder
     {
 
         //Insertem els usuaris
-        DB::table('usuaris')->insert([
+        DB::table('users')->insert([
             'username' => 'SuperAdmin',
             'email' => 'thos.vazquez.alex@gmail.com',
             'nom' => 'Admin',

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->enum('importancia', ['poc', 'mitg', 'molt']);
             $table->string('asumpte');
             $table->string('missatge');
-            $table->unsignedBigInteger('usuari_id');
-            $table->foreign('usuari_id')->references('usuari_id')->on('usuaris');
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

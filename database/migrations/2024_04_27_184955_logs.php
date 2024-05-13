@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('log_id');
             $table->timestamp('data')->nullable();
             $table->timestamp('hora')->nullable();
-            $table->unsignedBigInteger('usuari_id');
-            $table->foreign('usuari_id')->references('usuari_id')->on('usuaris');
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users');
             $table->string('accio');
             $table->string('ipClient');
         });
