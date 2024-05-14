@@ -46,7 +46,7 @@
         <label for="email">Email</label><br>
         <input type="email" name="email" id="email" value="{{ Auth::user()->email }}">
         <input type="submit" value="Enviar">
-        <a href="/"><button class="danger">Tornar</button></a>
+        <a href="{{ route('admin.dashboard') }}"><button class="bg-success text-white">Tornar</button></a>
     </div>
     </div>
 </body>

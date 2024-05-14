@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         Log::info('El usuario está entrando.');
         if (Auth::user()->admin) {
-            return redirect()->action([AdminController::class, 'dashboard']);
+            return redirect()->route('admin.dashboard');
         } else {
             return redirect()->route('user.dashboard');
         }

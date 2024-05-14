@@ -40,6 +40,10 @@ Route::get('/perfil', function () {
     return view('perfil');
 })->name('perfil');
 
+Route::get('/panell', function () {
+    return view('vistaPanell');
+})->name('panell');
+
 Route::middleware('auth')->group(function () {
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');

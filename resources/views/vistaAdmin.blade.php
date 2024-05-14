@@ -26,11 +26,12 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
-                        <a class="dropdown-item" href="">Panell de control</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a href="dropdown-item"><button type="submit">Tancar sessió</button></a>
-                    </form>
+                        <a class="dropdown-item" href="/panell">Panell de control</a>
+                        <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Tancar sessió</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST"">
+                            @csrf
+                        </form>
                     </div>
                 </li>
             </ul>
@@ -43,7 +44,7 @@
         <h4>Empresas</h4>
     </div>
     <div id="main">
-        <h2 id="titol">Benvingut a la seva zona personal</h2>
+        <h2 id="titol">Area privada</h2>
     </div>
     </div>
 </body>
