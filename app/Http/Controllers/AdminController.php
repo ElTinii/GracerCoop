@@ -15,9 +15,9 @@ class AdminController extends Controller
         } else {
             Log::info('El usuario no está autenticado.');
         }
-        // if (!Auth::check()) {
-        //     return redirect('/');
-        // }
+        if (!Auth::check()) {
+            return redirect('/');
+        }
 
         return view('vistaAdmin');
     }

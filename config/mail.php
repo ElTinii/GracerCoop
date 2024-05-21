@@ -44,6 +44,7 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'auth_mode' => null,
         ],
 
         'ses' => [
@@ -93,7 +94,7 @@ return [
                 'ses',
                 'postmark',
             ],
-        ],
+        ],  
     ],
 
     /*
@@ -108,8 +109,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'thos.vazquez.alex@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Gracer Coop'),
     ],
 
     /*

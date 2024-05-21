@@ -10,7 +10,7 @@
     <title>Part Privada</title>
 </head>
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
             <img src="{{ asset('img/GRACER3.jfif') }}" width="30" height="30" class="d-inline-block align-top" alt="">
             Gracer Coop
@@ -25,6 +25,7 @@
                         {{ Auth::check() ? Auth::user()->username : 'Guest' }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{route('admin.dashboard')}}">Home</a>
                         <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
                         <a class="dropdown-item" href="/panell">Panell de control</a>
                         <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Tancar sessió</a>
@@ -39,13 +40,28 @@
     </nav>
 </header>
 <body>
-    <div class="row">
-    <div id="esquerra">
-        <h4>Empresas</h4>
-    </div>
-    <div id="main">
-        <h2 id="titol">Area privada</h2>
-    </div>
-    </div>
+<div id="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            <h3>Empresas</h3>
+            <!-- <li class="active">
+               <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="{{asset('img/home_icon24.png')}}" alt=""> Home</a>
+                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                  <li><a href="#">link1</a></li>
+                  <li><a href="#">link2</a></li>
+               </ul>
+            </li> -->
+      </div>
+   <div id="page-content-wrapper">
+         <div class="container-fluid xyz">
+            <div class="row">
+              
+            </div>
+         </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+   </div>
+   </div>
 </body>
 </html>
