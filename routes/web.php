@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Middleware\AdminMiddle;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,11 +23,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//Hacemos esto para que si el usuario esta logeado y se sale de la aplicacion haga la verificacion de que es un usuario o un admin i le envie a la vista correspondiente
+Route::get('/redirect', function () {
+    if (Auth::user()->admin) {
+        return redirect()->route('admin.dashboard');
+    } else {
+        return redirect()->route('user.dashboard');
+    }
+})->name('redirect');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -36,28 +42,31 @@ Route::get('/contacte', function () {
     return view('contacte');
 })->name('contacte');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/perfil', function () {
     return view('perfil');
 })->name('perfil');
 });
 
-Route::middleware('auth')->group(function () {
-Route::get('/panell', function () {
-    return view('vistaPanell');
-})->name('panell');
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+Route::get('/panell', [PanelController::class, 'Mostrar'])->name('admin.dashboard');
 });
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified', 'admin')->group(function () {
     Route::get('/empresas', [PanelController::class, 'mostrarEmpresas'])->name('empresas');
 });
 
+Route::middleware('auth', 'verified', 'admin')->group(function () {
 Route::post('/empresas', [PanelController::class, 'store'])->name('panel.store');
+});
 
+Route::middleware('auth', 'verified','admin')->group(function () {
 Route::post('/empresas/delete/{id}', [EmpresaController::class, 'destroy'])->name('panel.destroy');
+});
 
+Route::get('/dades', [PanelController::class, 'obtenirDades']);
 require __DIR__.'/auth.php';

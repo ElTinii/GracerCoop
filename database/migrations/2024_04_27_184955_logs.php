@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id('log_id');
-            $table->timestamp('data')->nullable();
-            $table->timestamp('hora')->nullable();
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('users');
+            $table->date('data')->nullable();
+            $table->time('hora')->nullable();
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('users');
             $table->string('accio');
             $table->string('ipClient');
+            $table->timestamps();
         });
     }
 

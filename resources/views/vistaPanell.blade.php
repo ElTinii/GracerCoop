@@ -6,6 +6,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+    <script defer type="module" src="{{ asset('js/panell.js')}}"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
     <script src="{{ asset('js/navbar.js')}}"></script>
     <title>Panell de Control</title>
@@ -44,7 +46,7 @@
       <div id="sidebar-wrapper">
          <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li class="active">
-               <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="{{asset('img/home_icon24.png')}}" alt=""> Home</a>
+               <a href="/panell"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="{{asset('img/home_icon24.png')}}" alt=""> Home</a>
             </li>
             <li>
                <a href="/empresas"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span><img src="{{asset('img/icon_empresa.png')}}" alt=""> Empresas</a>
@@ -60,33 +62,47 @@
    <div id="page-content-wrapper">
          <div class="container-fluid xyz">
             <div class="row">
+                <div>
                 <div class="col">
-                    <h2>Seleccioni una opcio</h2>
-                    <ul>
-                        <li><a href="/empresas">Empresas</a><br></li>
-                        <li>
-                            <ul>
-                                <li><a href="">Afegir una empresa</a><br></li>
-                                <li><a href="">Seleccionar una empresa</a><br></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Logs</a><br></li>
-                        <li><a href="">Missatge</a><br></li>
-                        <li>
-                            <ul>
-                                <li><a href="">Enviar missatge</a><br></li>
-                                <li><a href="">Programar un missatge</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a href=""></a>
+                    <div>
+                        <h2>Seleccioni una opcio</h2>
+                        <ul>
+                            <li><a href="/empresas">Empresas</a><br></li>
+                            <li>
+                                <ul>
+                                    <li><a href="/empresas?abrirModal=true">Afegir una empresa</a><br></li>
+                                    <li><a href="/empresas">Seleccionar una empresa</a><br></li>
+                                </ul>
+                            </li>
+                            <li><a href="">Logs</a><br></li>
+                            <li><a href="">Missatge</a><br></li>
+                            <li>
+                                <ul>
+                                    <li><a href="">Enviar missatge</a><br></li>
+                                    <li><a href="">Programar un missatge</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a href=""></a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="uAccio">
+                            <h2>Ultima acció</h2>
+                            <p>Client: {{ $nomUser->username }}</p>
+                            <p>Accio: {{$log->accio}}</p>
+                            <p>Ip del client: {{$log->ipClient}}</p>
+                            <p>Data: {{$log->data}}</p>
+                            <p>Hora: {{$log->hora}}</p>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="col">
                     <h2>Moviment diari</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
+                    <div id="myPlot">
+
+                    </div>
                 </div>
             </div>
          </div>

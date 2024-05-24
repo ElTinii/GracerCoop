@@ -12,9 +12,11 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Models\Logs;
 
 class AuthenticatedSessionController extends Controller
 {
+    protected $redirectTo = '/redirect';
     /**
      * Display the login view.
      */
@@ -30,7 +32,15 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate(); 
         $request->session()->regenerate();
-        Log::info('El usuario está entrando.');
+        //Enviem un log a la base de dades
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = Auth::user()->username . ' ha iniciat sessió';
+        $log->ipClient = request()->ip();
+        $log->save();
+
         if (Auth::user()->admin) {
             return redirect()->route('admin.dashboard');
         } else {

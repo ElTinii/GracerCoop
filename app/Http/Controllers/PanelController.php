@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 use App\Models\Empresa;
 use App\Models\User;
 use App\Models\Carpetas;
+use App\Models\Logs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\MiMailable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use DateInterval;
 
 class PanelController extends Controller
 {
@@ -52,14 +56,14 @@ class PanelController extends Controller
         //Creamos la carpeta raiz de la empresa donde podran subir los archivos
         $carpeta = new Carpetas();
         $carpeta->nom = 'CPersonal';
-        $carpeta->ruta = '/resources/empresas/' . $request->nom . '/CPersonal';
+        $carpeta->ruta = 'resources/empresas/' . $request->nom . '/CPersonal';
         $carpeta->empresa_id = $empresa->empresa_id;
         $carpeta->save();
 
-        $dir = "CPersonal";
-        if (!file_exists($carpeta->ruta)) {
-            mkdir($carpeta->ruta, 0777, true);
-            log::info("Directorio creado: $dir");
+        $ruta = base_path($carpeta->ruta);
+        if (!file_exists($ruta)) {
+            mkdir($ruta, 0777, true);
+            log::info("Directorio creado: $carpeta->nom");
         } else {
             log::info("El directorio ya existe");
         }
@@ -67,14 +71,14 @@ class PanelController extends Controller
         //Creamos la carpeta de archivos compartidos de la empresa
         $carpeta = new Carpetas();
         $carpeta->nom = 'CEmpresa';
-        $carpeta->ruta = '/resources/empresas/' . $request->nom . '/CEmpresa';
+        $carpeta->ruta = 'resources/empresas/' . $request->nom . '/CEmpresa';
         $carpeta->empresa_id = $empresa->empresa_id;
         $carpeta->save();
 
-        $dir = "CEmpresa";
-        if (!file_exists($dir)) {
-            mkdir($dir, 0777, true);
-            log::info("Directorio creado: $dir");
+        $ruta = base_path($carpeta->ruta);
+        if (!file_exists($ruta)) {
+            mkdir($ruta, 0777, true);
+            log::info("Directorio creado: $carpeta->nom");
         } else {
             log::info("El directorio ya existe");
         }
@@ -86,11 +90,40 @@ class PanelController extends Controller
         //Enviem un correu amb les dades de l'usuari
         Mail::to($usuari->email)->send(new MiMailable($details));
         
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = Auth::user()->username . ' dona d\'alta a l\'empresa ' . $nom;
+        $log->ipClient = request()->ip();
+        $log->save();
         return redirect()->route('empresas');
     }
+
     public function mostrarEmpresas()
     {
         $empresas = Empresa::all();
         return view('vistaPanellEmp', compact('empresas'));
+    }
+    public function obtenirDades()
+    {
+        $xArray = DB::table('logs')
+            ->select(DB::raw('DATE(data) as data'))
+            ->distinct()
+            ->pluck('data');
+
+
+        $yArray = DB::table('logs')
+            ->select(DB::raw('count(*) as count'))
+            ->groupBy('data')
+            ->pluck('count');
+
+        return response()->json(['xArray' => $xArray, 'yArray' => $yArray]);
+    }
+    public function Mostrar()
+    {
+        $log = Logs::latest()->first();
+        $nomUser = User::where('id', $log->client_id)->first();
+        return view('vistaPanell', compact('log', 'nomUser'));
     }
 }

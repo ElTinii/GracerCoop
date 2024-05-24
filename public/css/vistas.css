@@ -98,7 +98,10 @@ nav{
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
  }
- 
+h3#sidebar{
+   margin-top: 20px;
+   margin-left: 15px;
+ }
  #wrapper.toggled #sidebar-wrapper {
     width: 250px;
  }
@@ -229,8 +232,6 @@ nav{
     padding: 20px;
  }
  button#accions{
-   width: 27%;
-   height: 30%;
     border-radius: 5px;
     padding: 10px 20px;
     margin-left: 10px;
@@ -238,4 +239,16 @@ nav{
  }
  td{
    max-width: 25%;
+ }
+ img#carp{
+      width: 100%;
+ }
+ p{
+   margin-bottom: 0px;
+ }
+ div.col-md-4{
+    margin-top: 20px;
+ }
+ div#uAccio p{
+   padding-bottom: 11px;
  }

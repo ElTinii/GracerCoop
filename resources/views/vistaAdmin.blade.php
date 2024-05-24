@@ -44,19 +44,38 @@
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
          <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-            <h3>Empresas</h3>
-            <!-- <li class="active">
-               <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="{{asset('img/home_icon24.png')}}" alt=""> Home</a>
-                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                  <li><a href="#">link1</a></li>
-                  <li><a href="#">link2</a></li>
-               </ul>
-            </li> -->
+            <h3 id="sidebar">Empresas</h3>
+            @foreach($empresas as $empresa)
+                <li class="active">
+                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="" alt=""> {{$empresa->nom}}</a>
+                     <ul class="nav-pills nav-stacked" style="list-style-type:none;">
+                    </ul>
+                 </li>
+            @endforeach
       </div>
    <div id="page-content-wrapper">
          <div class="container-fluid xyz">
             <div class="row">
-              
+              @foreach ($empresas as $empresa)
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{{$empresa->nom}}</h4>
+                        </div>
+                        <div class="card-body">
+                            @if($empresa->img == null)
+                                <img src="{{asset('img/folder-2813518_1280.png')}}" id="carp" alt="">
+                            @else
+                                <img src="{{asset('img/$empresa->imatge')}}" id="carp" alt=""> 
+                            @endif
+                        </div>
+                        <div class="card-footer">
+                            
+                        <p>Creador: {{Auth::user()->username}}</p>
+                        </div>
+                    </div>
+                </div>
+              @endforeach
             </div>
          </div>
       </div>
