@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Carpetas extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'carpeta_id';
     protected $fillable = ['nom','ruta','empresa_id'];
 }

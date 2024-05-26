@@ -27,9 +27,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{route('admin.dashboard')}}">Home</a>
                         <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
-                        <a class="dropdown-item" href="/panell">Panell de control</a>
                         <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Tancar sessió</a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"">
                             @csrf
                         </form>
@@ -56,11 +54,27 @@
    <div id="page-content-wrapper">
          <div class="container-fluid xyz">
             <div class="row">
-              
+            @foreach ($carpetasFilles as $carpeta)
+                <div class="col-md-4">
+                    <a href="/carpetas/{{$carpeta->carpeta_id}}" id="carpetas">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{{$carpeta->nom}}</h4>
+                        </div>
+                        <div class="card-body">
+                        <img src="{{asset('img/folder-2813518_1280.png')}}" id="carp" alt="carpeta"> 
+                        </div>
+                        <div class="card-footer">
+                            
+                        <p>Creador: {{Auth::user()->username}}</p>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+              @endforeach
             </div>
          </div>
       </div>
-      <!-- /#page-content-wrapper -->
    </div>
    </div>
 </body>

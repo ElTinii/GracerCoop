@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('carpeta_id');
             $table->string('nom');
             $table->string('ruta');
+            $table->unsignedBigInteger('carpeta_Padre')->nullable();
             $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('empresa_id')->on('empresa');
             $table->timestamps();

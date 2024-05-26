@@ -252,3 +252,27 @@ h3#sidebar{
  div#uAccio p{
    padding-bottom: 11px;
  }
+.clickable-row {
+   cursor: pointer;
+   background-color: #a00000;
+}
+table {
+   width: 100%;
+   border-collapse: collapse;
+}
+a#carpetas {
+   color: inherit;
+   text-decoration: none;
+   background-color: transparent;
+   cursor: auto;
+}
+a#carpetas:hover{
+   color: inherit;
+   text-decoration: none;
+   background-color: transparent;
+   cursor: pointer;
+}
+img#eliminar{
+   width: 25px;
+   height: 25px;
+}

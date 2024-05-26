@@ -65,32 +65,28 @@
             <div class="container-fluid xyz">
                 <div class="row">
                     <div class="col">   
-                        <h1>Empresas</h1>
-                        <button type="button" class="btn btn-outline-dark mt-3 w-100" data-toggle="modal" data-target="#afegirEmpresa">Afegir empresa</button>
-                        <h4>Llistat d'empresas</h4>
+                        <h1>Logs</h1>
+                        <div>
+                        <h4>Informacio dels logs</h4>
+                        </div>
                         <table id="myTable">
                             <thead>
                                 <tr>
-                                    <th>Nom</th>
-                                    <th>Usuari 1</th>
-                                    <th>Usuari 2</th>
-                                    <th>Usuari 3</th>
-                                    <th>Accions</th>
+                                    <th>Client Id</th>
+                                    <th>Acció</th>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>Ip client</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach ($empresas as $empresa)
-                                <tr>
-                                    <td>{{ $empresa->nom }}</td>
-                                    <td>{{ $empresa->usuari1 }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <div class="row">
-                                            <button class="btn-info" id="accions">Editar</button>
-                                            <button class="btn btn-danger" data-empresa-id="{{ $empresa->empresa_id }}" id="accions" data-toggle="modal" data-target="#elimEmp">Eliminar</button>
-                                        </div>
-                                    </td>
+                            @foreach ($logs as $log)
+                                <tr class="clickable-row" idatelog="{{$log->log_id}}" id="filaLogs">
+                                    <td>{{ $log->client_id }}</td>
+                                    <td>{{ $log->accio }}</td>
+                                    <td>{{$log->data}}</td>
+                                    <td>{{$log->hora}}</td>
+                                    <td>{{$log->ipClient}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -100,56 +96,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="afegirEmpresa" tabindex="-1" role="dialog" aria-labelledby="afegirEmpresa" aria-hidden="true" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content custom-modal-color">
-                    <form id="afegir-empresa" method="post" action="{{ route('panel.store') }}">
-                    @csrf
-                        <div class="modal-header">
-                            <h2>Afegir una empresa</h2>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <label for="nom">Nom de l'empresa</label>
-                            <input type="text" name="nom" id="formu" :value="old('nom')">
-                            <label for="correu">Correu electronic</label>
-                            <input type="email" name="correu" id="formu" :value="old('correu')">
-                            @error('correu')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tancar</button>
-                            <button type="submit" id="afegir" class="btn btn-success">Afegir</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="elimEmp" tabindex="-1" role="dialog" aria-labelledby="elimEmp" aria-hidden="true" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content custom-modal-color">
-                    <form id="afegir-empresa" method="post" action="">
-                    @csrf
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h4>Estas segur que vols eliminar l'empresa?</h4>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                            <button type="button" id="Siel" class="btn btn-success" data-empresa-id="">Si</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
         <script>
             let table = new DataTable('#myTable');
         </script>

@@ -19,7 +19,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto" style="padding-right:20px;">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::check() ? Auth::user()->username : 'Guest' }}
@@ -47,17 +47,18 @@
             <h3 id="sidebar">Empresas</h3>
             @foreach($empresas as $empresa)
                 <li class="active">
-                    <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="" alt=""> {{$empresa->nom}}</a>
+                    <a href="/carpetasEmpresa/{{$empresa->empresa_id}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="" alt=""> {{$empresa->nom}}</a>
                      <ul class="nav-pills nav-stacked" style="list-style-type:none;">
                     </ul>
                  </li>
             @endforeach
       </div>
    <div id="page-content-wrapper">
-         <div class="container-fluid xyz">
+        <div class="container-fluid xyz">
             <div class="row">
               @foreach ($empresas as $empresa)
-                <div class="col-md-4">
+                    <div class="col-md-4">
+                    <a href="/carpetasEmpresa/{{$empresa->empresa_id}}" id="carpetas">
                     <div class="card">
                         <div class="card-header">
                             <h4>{{$empresa->nom}}</h4>
@@ -70,10 +71,9 @@
                             @endif
                         </div>
                         <div class="card-footer">
-                            
-                        <p>Creador: {{Auth::user()->username}}</p>
                         </div>
                     </div>
+                    </a>
                 </div>
               @endforeach
             </div>

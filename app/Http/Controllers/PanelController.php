@@ -120,10 +120,17 @@ class PanelController extends Controller
 
         return response()->json(['xArray' => $xArray, 'yArray' => $yArray]);
     }
+    
     public function Mostrar()
     {
         $log = Logs::latest()->first();
         $nomUser = User::where('id', $log->client_id)->first();
         return view('vistaPanell', compact('log', 'nomUser'));
+    }
+
+    public function obtenirLogs()
+    {
+        $logs = Logs::all();
+        return view('vistaLogs', compact('logs'));
     }
 }

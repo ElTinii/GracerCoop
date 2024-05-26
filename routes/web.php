@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Middleware\AdminMiddle;
+use App\Http\Controllers\CarpetasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,3 +71,24 @@ Route::post('/empresas/delete/{id}', [EmpresaController::class, 'destroy'])->nam
 
 Route::get('/dades', [PanelController::class, 'obtenirDades']);
 require __DIR__.'/auth.php';
+
+Route::middleware('auth', 'verified', 'admin')->group(function () {
+Route::get('/logs', [PanelController::class, 'obtenirLogs'])->name('logs');
+});
+
+Route::middleware('auth', 'verified', 'admin')->group(function () {
+    Route::get('/missatges')->name('logs');
+});
+
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/carpetas/{id}', [CarpetasController::class, 'mostrarCarpeta'])->name('carpetas');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/carpetasEmpresa/{id}', [CarpetasController::class, 'carpetasEmpresa'])->name('carpetasEmpresa');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::post('/crearCarpeta', [CarpetasController::class, 'crearCarpetas'])->name('carpetas');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/carpetasInici/{id}', [CarpetasController::class, 'carpetasInici'])->name('carpetas');
+});

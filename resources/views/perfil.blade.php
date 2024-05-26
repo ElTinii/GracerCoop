@@ -42,9 +42,9 @@
     <div class="profile-container">
         <h1>El meu Perfil</h1>
         <label for="username">Username</label><br>
-        <input type="text" name="username" id="username" value="{{ Auth::user()->username }}"><br>
+        <input type="text" name="username" value="{{ Auth::user()->username }}" id="formu"><br>
         <label for="email">Email</label><br>
-        <input type="email" name="email" id="email" value="{{ Auth::user()->email }}">
+        <input type="email" name="email" value="{{ Auth::user()->email }}" id="formu">
         <input type="submit" value="Enviar">
         <a href="{{ route('admin.dashboard') }}"><button class="bg-success text-white">Tornar</button></a>
     </div>
