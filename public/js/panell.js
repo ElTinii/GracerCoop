@@ -18,8 +18,9 @@
 //     });
 // });
 
+// Fem un on click per a poder fer un ajax per a poder eliminar una empresa
 $('#Siel').click(function(){
-    var empresaId = $(this).data('empresa-id');
+    let empresaId = $(this).data('empresa-id');
 
     $.ajax({
         url: '/empresas/delete/' + empresaId,
@@ -29,7 +30,7 @@ $('#Siel').click(function(){
         },
         success: function(){
         //Aqui lo que intentamos es limpiar los parametros que añadimos a la url quando hacemos la accion de eliminar una empresa
-        var clean_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        let clean_url = window.location.protocol + "//" + window.location.host + window.location.pathname;
         window.location.href = clean_url;
         },
         error: function(jqXHR, textStatus, errorThrown){
@@ -38,48 +39,52 @@ $('#Siel').click(function(){
         }
     });
 });
+//Aqui li enviem les dades a un altre boto per poder fer be la eliminacio de la empresa
 $('#elimEmp').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) 
-  var empresaId = button.data('empresa-id')
-  var modal = $(this)
+  let button = $(event.relatedTarget) 
+  let empresaId = button.data('empresa-id')
+  let modal = $(this)
   modal.find('#Siel').data('empresa-id', empresaId)
 })
 
 //Lo que buscamos aquí es comprobar cuando entras a la vista de empresa, si en la URL hay la propiedad abrirModal, si es así, abrir el modal.
 $(document).ready(function() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var abrirModal = urlParams.get('abrirModal');
+    let urlParams = new URLSearchParams(window.location.search);
+    let abrirModal = urlParams.get('abrirModal');
 
     if (abrirModal === 'true') {
         $('#afegirEmpresa').modal('show');
     }
 });
 
-// Esto lo que hace es que cuando entres en el panel salga el gràfico con la informacion del numero de acciones que se hacen diariamente durante la semana
-let xArray, yArray;
-$.get('/dades', function(data) {
-    xArray = data.xArray;
-    yArray = data.yArray;
+//Aqui fem un ajax per a poder elimiar una carpeta
+$('#SielCarp').click(function(){
+    let id = $(this).data('pare-id');
+    let carpeta_id = $(this).data('carpeta-id');
+    $.ajax({
+        url: '/carpetasDelete/' + carpeta_id,
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(){
+            location.href = '/carpetas/' + id;
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            // Código para ejecutar si la solicitud falló
+            console.log(textStatus, errorThrown);
+        }
+    });
+});
+//Aqui li pasem el id a un altre boton per poder fer be i facil el eliminar la carpeta
+$('#elimCarp').on('show.bs.modal', function (event) {
+    let button = $(event.relatedTarget);
+    let carpetaId = button.data('carpeta-id');
+    let modal = $(this);
+    modal.find('#SielCarp').data('carpeta-id', carpetaId);
+});
 
-}).done(function(){
-//Pasem les dades de Date a un format que ens interessa que es com el tenim a la base de dades
-let avui = new Date();
-let dataAvui = avui.toISOString().split('T')[0];
-
-//Aqui calculem la data de fa 7 dies per poder mostrar les dades de la ultima setmanai que quedi mes o menys be
-let setDies = new Date();
-setDies.setDate(avui.getDate() - 7);
-let formatSetdies = setDies.toISOString().split('T')[0];
-    const data = [{
-        x: xArray,
-        y: yArray,
-        mode:"lines"
-      }];
-      const config = { displayModeBar: false };
-      const layout = {
-        yaxis: {range: [0, 10]},
-        xaxis: {range: [formatSetdies, dataAvui], title: "Día del mes"},  
-        title: "Acciones diarias de la empresa"
-      };
-      Plotly.newPlot("myPlot", data, layout, config);
+$('#filaEmpresa').click(function(){
+    let empresa_id = $(this).data('empresa-id');
+    window.location.href = '/empresas/' + empresa_id;
 });

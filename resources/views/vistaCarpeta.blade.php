@@ -6,6 +6,8 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/navbar.js')}}"></script>
+    <script defer type="module" src="{{ asset('js/panell.js') }}"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
     <title>Part Privada</title>
 </head>
@@ -80,7 +82,9 @@
                         </div>
                         </a>
                         <div class="card-footer text-right">
-                            <button class="btn-danger" idateid="{{$carpeta->carpeta_id}}"><img src="{{asset('img/eliminar.png')}}" alt="" id="eliminar"></button>
+                            @if (!(is_null($carpeta->carpeta_Padre)))
+                            <button class="btn-danger" data-carpeta-id="{{$carpeta->carpeta_id}}" data-toggle="modal" data-target="#elimCarp"><img src="{{asset('img/eliminar.png')}}" alt="" id="eliminar"></button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -114,6 +118,24 @@
                             <button type="submit" id="btnCrear" class="btn btn-success" data-empresa-id="">Crear Carpeta</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="elimCarp" tabindex="-1" role="dialog" aria-labelledby="elimCarp" aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-color">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Estas segur que vols eliminar la carpeta?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                            <button type="button" id="SielCarp" class="btn btn-success" data-carpeta-id="" @if(isset($id))data-pare-id="{{$id}}"@endif>Si</button>
+                        </div>
                 </div>
             </div>
         </div>

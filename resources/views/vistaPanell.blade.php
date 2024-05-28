@@ -10,6 +10,7 @@
     <script defer type="module" src="{{ asset('js/panell.js')}}"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
     <script src="{{ asset('js/navbar.js')}}"></script>
+    <script defer type="module" src="{{ asset('js/grafic.js')}}"></script>
     <title>Panell de Control</title>
 </head>
 <body>

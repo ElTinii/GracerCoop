@@ -252,7 +252,7 @@ h3#sidebar{
  div#uAccio p{
    padding-bottom: 11px;
  }
-.clickable-row {
+.clickable {
    cursor: pointer;
    background-color: #a00000;
 }

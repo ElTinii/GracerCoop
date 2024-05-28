@@ -67,7 +67,55 @@
                     <div class="col">   
                         <h1>Empresas</h1>
                         <button type="button" class="btn btn-outline-dark mt-3 w-100" data-toggle="modal" data-target="#afegirEmpresa">Afegir empresa</button>
-                        <h4>Llistat d'empresas</h4>
+                        @error('correu')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror                   
+                        @if(isset($empresa) && isset($usuaris))
+                        <div id="empresaInfo">
+                            <h4>Informacio de l'empresa</h4>
+                            <div class="row">
+                                <div class=col>
+                                    <h5>Empresa: {{$empresa->nom}}</h5>
+                                    <p>Imatge:</p>
+                                    <p>p</p>
+                                    <p>Ultima Modificacio:</p>
+                                    <p>{{$empresa->updated_at}}</p>
+                                    <p>Creat: </p>
+                                    <p>{{$empresa->created_at}}</p>
+                                    <button>Editar</button>
+                                </div>
+                                @foreach($usuaris as $usuari)
+                                <div class=col>
+                                    <div>
+                                        <h5>Usuari: {{$usuari->username}}</h5>
+                                        <p>Correu: </p>
+                                        <p>{{$usuari->email}}</p>
+                                        <p>Ultima Modificacio:</p>
+                                        <p>{{$usuari->updated_at}}</</p>
+                                        <p>Dia de creacio: </p>
+                                        <p>{{$usuari->created_at}}</p>
+                                        <button>Editar</button>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @if($usuaris->count() < 2)
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div>
+                                        <button class="btn-success" data-toggle="modal" data-target="#usuari">Afegir usuari</button>
+                                    </div>
+                                </div>
+                                @endif
+                                @if($usuaris->count() < 3)
+                                <div class="col d-flex justify-content-center align-items-center">
+                                    <div>
+                                        <button class="btn-success" data-toggle="modal" data-target="#usuari">Afegir usuari</button>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endif
+                        <h2>Llistat d'empresas</h2>
                         <table id="myTable">
                             <thead>
                                 <tr>
@@ -80,14 +128,24 @@
                             </thead>
                             <tbody>
                             @foreach ($empresas as $empresa)
-                                <tr>
+                                <tr data-empresa-id="{{$empresa->empresa_id}}" id="filaEmpresa" class="clickable">
                                     <td>{{ $empresa->nom }}</td>
-                                    <td>{{ $empresa->usuari1 }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    @php
+                                        $usuarisEmpresa = $usuaris->where('empresa_id', $empresa->empresa_id);
+                                    @endphp
+                                        @foreach($usuarisEmpresa as $usuari)
+                                            @if($usuari->empresa_id == $empresa->empresa_id)
+                                            <td>Username: {{ $usuari->username }}</td>
+                                            @endif
+                                        @endforeach
+                                        @if($usuarisEmpresa->count() < 2)
+                                            <td></td>
+                                        @endif
+                                        @if($usuarisEmpresa->count() < 3)
+                                            <td></td>
+                                        @endif
                                     <td>
                                         <div class="row">
-                                            <button class="btn-info" id="accions">Editar</button>
                                             <button class="btn btn-danger" data-empresa-id="{{ $empresa->empresa_id }}" id="accions" data-toggle="modal" data-target="#elimEmp">Eliminar</button>
                                         </div>
                                     </td>
@@ -100,6 +158,7 @@
             </div>
         </div>
     </div>
+    <!-- Modal per crear una empresa -->
     <div class="modal fade" id="afegirEmpresa" tabindex="-1" role="dialog" aria-labelledby="afegirEmpresa" aria-hidden="true" >
             <div class="modal-dialog" role="document">
                 <div class="modal-content custom-modal-color">
@@ -128,7 +187,7 @@
                 </div>
             </div>
         </div>
-
+<!-- Modal per la confirmacio d'eliminar empresa -->
         <div class="modal fade" id="elimEmp" tabindex="-1" role="dialog" aria-labelledby="elimEmp" aria-hidden="true" >
             <div class="modal-dialog" role="document">
                 <div class="modal-content custom-modal-color">
@@ -145,6 +204,35 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                             <button type="button" id="Siel" class="btn btn-success" data-empresa-id="">Si</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!-- Modal per afegir un usuari -->
+        <div class="modal fade" id="usuari" tabindex="-1" role="dialog" aria-labelledby="usuari" aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-color">
+                    <form id="afegir-usuari" method="post" action="/empresa/afegir">
+                    @csrf
+                        <div class="modal-header">
+                            <h2>Afegir un usuari</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="nom">Username</label>
+                            <input type="text" name="nom" id="formu" :value="old('nom')">
+                            <label for="correu">Correu electronic</label>
+                            <input type="email" name="correu" id="formu" :value="old('correu')">
+                            @if(isset($empresa))
+                            <input type="text" value="{{$empresa->empresa_id}}" hidden disabled>
+                            @endif
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tancar</button>
+                            <button type="submit" id="afegir" class="btn btn-success">Afegir</button>
                         </div>
                     </form>
                 </div>

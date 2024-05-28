@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Log;
 class CarpetasController extends Controller
 {
     public function mostrarCarpeta($id)
-    {
+    {  
+        Log::info(json_encode(debug_backtrace()));
+        Log::info($id);
         $carpetaPare = Carpetas::where('carpeta_id', $id)->first();
         $ruta = $carpetaPare->ruta;
         $empresa_id = $carpetaPare->empresa_id;
@@ -27,6 +29,7 @@ class CarpetasController extends Controller
 
     public function crearCarpetas(Request $request){
         $nom = htmlspecialchars($request->nomCarpeta);
+        $id = $request->id;
         $carpetaPare = Carpetas::where('carpeta_id', $request->id)->first();
         $empresa_id = $carpetaPare->empresa_id;
         $carpetasFilles = Carpetas::where('empresa_id', $carpetaPare->empresa_id)->get();
@@ -38,7 +41,7 @@ class CarpetasController extends Controller
         $carpeta = new Carpetas();
         $carpeta->nom = $nom;
         $carpeta->ruta = $carpetaPare->ruta . '/' . $nom;
-        $carpeta->carpeta_Padre = $request->id;
+        $carpeta->carpeta_Padre = $id;
         $carpeta->empresa_id = $empresa_id;
         $carpeta->save();
 
@@ -51,11 +54,17 @@ class CarpetasController extends Controller
         }
 
         $carpetasFilles = Carpetas::where('empresa_id', $request->id)->where('carpeta_Padre', $request->id)->get();
-        return view('vistaCarpeta', compact('carpetasFilles'));
+        return view('vistaCarpeta', compact('carpetasFilles','id'));
     }
 
     public function carpetasInici($id){
         $carpetasFilles = Carpetas::where('empresa_id', $id)->where('carpeta_Padre', NULL)->get;
         return view('vistaCarpeta', compact('carpetasFilles'));
+    }
+
+    public function carpetasElim(Request $request){
+        $carpetas = Carpetas::where('carpeta_id', $request->id)->delete();
+        $carpeta = Carpetas::where('carpeta_Padre', $request->id)->delete();
+        return response()->json(null, 200);
     }
 }

@@ -64,6 +64,13 @@ Route::middleware('auth', 'verified', 'admin')->group(function () {
 Route::middleware('auth', 'verified', 'admin')->group(function () {
 Route::post('/empresas', [PanelController::class, 'store'])->name('panel.store');
 });
+Route::middleware('auth', 'verified', 'admin')->group(function () {
+Route::get('/empresas/{id}', [EmpresaController::class, 'mostrarUnaEmpresa'])->name('panel.show');
+});
+
+Route::middleware('auth', 'verified', 'admin')->group(function () {
+Route::post('/empresa/afegir', [EmpresaController::class, 'afegirUsuari'])->name('panel.afegir');
+});
 
 Route::middleware('auth', 'verified','admin')->group(function () {
 Route::post('/empresas/delete/{id}', [EmpresaController::class, 'destroy'])->name('panel.destroy');
@@ -91,4 +98,7 @@ Route::middleware('auth', 'verified')->group(function () {
 });
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/carpetasInici/{id}', [CarpetasController::class, 'carpetasInici'])->name('carpetas');
+});
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/carpetasDelete/{id}', [CarpetasController::class, 'carpetasElim'])->name('carpetas');
 });

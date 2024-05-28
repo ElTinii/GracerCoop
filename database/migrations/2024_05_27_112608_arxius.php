@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carpetas', function (Blueprint $table) {
-            $table->id('carpeta_id');
+        Schema::create('arxius', function (Blueprint $table) {
+            $table->id('arxiu_id');
             $table->string('nom');
             $table->string('ruta');
             $table->unsignedBigInteger('carpeta_padre')->nullable();
+            $table->foreign('carpeta_padre')->references('carpeta_id')->on('carpetas');
             $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('empresa_id')->on('empresa');
             $table->timestamps();

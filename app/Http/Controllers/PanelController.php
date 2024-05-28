@@ -21,14 +21,15 @@ class PanelController extends Controller
     {
         //Validamos los datos recibidos en el formulario
         $request->validate([
-            'nom' => 'required|string|max:100',
-            $request->validate([
-                'correu' => 'required|string|email|unique:users,email|max:100',
-            ], [
-                'correu.required' => 'El camp correu electronic es obligatori.',
-                'correu.email' => 'El correu electronic proporcionat no es vàlid.',
-                'correu.unique' => 'El correu ja existeix a la base de dades.',
-            ])
+            'nom' => 'required|string|max:30',
+            'correu' => 'required|string|email|unique:users,email|max:100',
+        ], [
+            'nom.required' => 'El camp nom es obligatori.',
+            'nom.string' => 'El nom ha de ser una cadena de text.',
+            'nom.max' => 'El nom no pot tenir més de 30 caràcters.',
+            'correu.required' => 'El camp correu electronic es obligatori.',
+            'correu.email' => 'El correu electronic proporcionat no es vàlid.',
+            'correu.unique' => 'El correu ja existeix a la base de dades.',
         ]);
 
         //Comprobamos que el nombre de la empresa no contenga insercion de codigo
@@ -103,7 +104,8 @@ class PanelController extends Controller
     public function mostrarEmpresas()
     {
         $empresas = Empresa::all();
-        return view('vistaPanellEmp', compact('empresas'));
+        $usuaris = User::all();
+        return view('vistaPanellEmp', compact('empresas','usuaris'));
     }
     public function obtenirDades()
     {
