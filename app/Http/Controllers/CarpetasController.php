@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\Carpetas;
 use App\Models\Empresa;
 use Illuminate\Support\Facades\Log;
+use App\Models\Arxius;
+use Illuminate\Support\Facades\Storage;
 
 class CarpetasController extends Controller
 {
     public function mostrarCarpeta($id)
     {  
-        Log::info(json_encode(debug_backtrace()));
-        Log::info($id);
         $carpetaPare = Carpetas::where('carpeta_id', $id)->first();
         $ruta = $carpetaPare->ruta;
         $empresa_id = $carpetaPare->empresa_id;
         $nomEmpresa = Empresa::where('empresa_id', $empresa_id)->first()->nom;
         $carpetasFilles = Carpetas::where('carpeta_Padre', $id)->get();
-        return view('vistaCarpeta', compact('carpetasFilles', 'ruta', 'nomEmpresa','id'));
+        $arxius = Arxius::where('carpeta_padre', $id)->get();
+        return view('vistaCarpeta', compact('carpetasFilles', 'ruta', 'nomEmpresa','id','arxius'));
     }
 
     public function carpetasEmpresa($id)
@@ -54,7 +55,8 @@ class CarpetasController extends Controller
         }
 
         $carpetasFilles = Carpetas::where('empresa_id', $request->id)->where('carpeta_Padre', $request->id)->get();
-        return view('vistaCarpeta', compact('carpetasFilles','id'));
+        $arxius = Arxius::where('carpeta_padre', $id)->get();
+        return view('vistaCarpeta', compact('carpetasFilles','id','arxius'));
     }
 
     public function carpetasInici($id){
@@ -66,5 +68,42 @@ class CarpetasController extends Controller
         $carpetas = Carpetas::where('carpeta_id', $request->id)->delete();
         $carpeta = Carpetas::where('carpeta_Padre', $request->id)->delete();
         return response()->json(null, 200);
+    }
+
+    public function pujarFitxers(Request $request){
+        $request->validate([
+            'fitxers' => 'required',
+            'fitxers.*' => 'mimes:jpeg,jpg,png,pdf,docx',
+        ], [
+            'fitxers.required' => 'El camp fitxer es obligatori.',
+            'fitxers.*.mimes' => 'El fitxer ha de ser un arxiu de tipus png, pdf o docx.',
+        ]);
+        $file = $request->file('fitxers');
+
+        $id = $request->id;
+        $carpeta = Carpetas::where('carpeta_id', $id)->first();
+
+        $ruta = $carpeta->ruta;
+        $empresa_id = $carpeta->empresa_id;
+        $nomEmpresa = Empresa::where('empresa_id', $empresa_id)->first()->nom;
+        $carpetasFilles = Carpetas::where('carpeta_Padre', $id)->get();
+        
+        $arxiu = new Arxius();
+        $arxiu->nom = $file->getClientOriginalName();
+        $arxiu->ruta = $ruta . '/' . $file->getClientOriginalName();
+        $arxiu->carpeta_padre = $id;
+        $arxiu->empresa_id = $empresa_id;
+        $arxiu->save();
+        $arxius = Arxius::where('carpeta_padre', $id)->get();
+
+        if ($request->hasFile('fitxers')) {
+            $file = $request->file('fitxers');
+            $filename = $file->getClientOriginalName();
+            $file->move(base_path($ruta), $filename);
+
+            $request->merge(['file' => $filename]);
+        }
+
+        return view('vistaCarpeta', compact('carpetasFilles', 'ruta', 'nomEmpresa','id','arxius', 'carpeta'));
     }
 }

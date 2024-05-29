@@ -33,72 +33,38 @@ Route::get('/redirect', function () {
     }
 })->name('redirect');
 
-Route::middleware('auth', 'verified')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 Route::get('/contacte', function () {
     return view('contacte');
 })->name('contacte');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-Route::get('/perfil', function () {
-    return view('perfil');
-})->name('perfil');
-});
-
-Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-Route::get('/panell', [PanelController::class, 'Mostrar'])->name('admin.dashboard');
-});
-Route::middleware('auth', 'verified')->group(function () {
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
-});
-
-Route::middleware('auth', 'verified', 'admin')->group(function () {
-    Route::get('/empresas', [PanelController::class, 'mostrarEmpresas'])->name('empresas');
-});
-
-Route::middleware('auth', 'verified', 'admin')->group(function () {
-Route::post('/empresas', [PanelController::class, 'store'])->name('panel.store');
-});
-Route::middleware('auth', 'verified', 'admin')->group(function () {
-Route::get('/empresas/{id}', [EmpresaController::class, 'mostrarUnaEmpresa'])->name('panel.show');
-});
-
-Route::middleware('auth', 'verified', 'admin')->group(function () {
-Route::post('/empresa/afegir', [EmpresaController::class, 'afegirUsuari'])->name('panel.afegir');
-});
-
-Route::middleware('auth', 'verified','admin')->group(function () {
-Route::post('/empresas/delete/{id}', [EmpresaController::class, 'destroy'])->name('panel.destroy');
-});
 
 Route::get('/dades', [PanelController::class, 'obtenirDades']);
 require __DIR__.'/auth.php';
 
+//Aqui ponemos las rutas que necesitan estar verificadas con la session iniciada y ser administrador
 Route::middleware('auth', 'verified', 'admin')->group(function () {
-Route::get('/logs', [PanelController::class, 'obtenirLogs'])->name('logs');
-});
-
-Route::middleware('auth', 'verified', 'admin')->group(function () {
+    Route::get('/empresas', [PanelController::class, 'mostrarEmpresas'])->name('empresas');
+    Route::post('/empresas', [PanelController::class, 'store'])->name('panel.store');
+    Route::post('/empresas/delete/{id}', [EmpresaController::class, 'destroy'])->name('panel.destroy');
+    Route::post('/empresa/afegir', [EmpresaController::class, 'afegirUsuari']);
+    Route::get('/empresas/{id}', [EmpresaController::class, 'mostrarUnaEmpresa'])->name('panel.show');
+    Route::get('/logs', [PanelController::class, 'obtenirLogs'])->name('logs');
     Route::get('/missatges')->name('logs');
+    Route::get('/panell', [PanelController::class, 'Mostrar'])->name('admin.dashboard');
 });
 
+//Aqui ponemos las rutas que necesitan estar verificadas con la session iniciada
 Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/carpetas/{id}', [CarpetasController::class, 'mostrarCarpeta'])->name('carpetas');
-});
-Route::middleware('auth', 'verified')->group(function () {
     Route::get('/carpetasEmpresa/{id}', [CarpetasController::class, 'carpetasEmpresa'])->name('carpetasEmpresa');
-});
-Route::middleware('auth', 'verified')->group(function () {
     Route::post('/crearCarpeta', [CarpetasController::class, 'crearCarpetas'])->name('carpetas');
-});
-Route::middleware('auth', 'verified')->group(function () {
     Route::get('/carpetasInici/{id}', [CarpetasController::class, 'carpetasInici'])->name('carpetas');
-});
-Route::middleware('auth', 'verified')->group(function () {
     Route::get('/carpetasDelete/{id}', [CarpetasController::class, 'carpetasElim'])->name('carpetas');
+    Route::post('/pujarFitxers', [CarpetasController::class, 'pujarFitxers'])->name('carpetas');
+    Route::get('/perfil', function () {
+        return view('perfil');
+    })->name('perfil');
 });

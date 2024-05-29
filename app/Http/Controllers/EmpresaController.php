@@ -7,7 +7,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Logs;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;    
+use Illuminate\Support\Facades\Auth;  
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use App\Mail\MiMailable;
+use Illuminate\Support\Facades\Mail;
 
 class EmpresaController extends Controller
 {
@@ -33,7 +38,7 @@ class EmpresaController extends Controller
             $log->data = now()->format('Y-m-d');
             $log->hora = now()->format('H:i:s');
             $log->client_id = Auth::user()->id;
-            $log->accio = Auth::user()->username . 'elimina l\'empresa ' . $empresa->nom;
+            $log->accio = Auth::user()->username . ' elimina l\'empresa ' . $empresa->nom;
             $log->ipClient = request()->ip();
             $log->save();
         $carpetas = Carpetas::where('empresa_id', $id)->delete();
@@ -48,10 +53,11 @@ class EmpresaController extends Controller
 
     public function mostrarUnaEmpresa(Request $request){
         $id = $request->id;
-        $empresa = Empresa::findOrFail($id);
+        $empresaSelect = Empresa::findOrFail($id);
         $empresas = Empresa::all();
-        $usuaris = User::where('empresa_id', $id)->get();
-        return view('vistaPanellEmp', compact('empresas','empresa', 'usuaris'));
+        $usuarisSelect = User::where('empresa_id', $id)->get();
+        $usuaris = User::all();
+        return view('vistaPanellEmp', compact('empresas','empresaSelect', 'usuarisSelect', 'usuaris'));
     }
 
     public function afegirUsuari(Request $request){
@@ -59,26 +65,35 @@ class EmpresaController extends Controller
             'username' => 'required|string|max:30',
             'correu' => 'required|string|email|unique:users,email|max:100',
         ], [
-            'nom.required' => 'El camp nom es obligatori.',
-            'nom.string' => 'El nom ha de ser una cadena de text.',
-            'nom.max' => 'El nom no pot tenir més de 30 caràcters.',
+            'username.required' => 'El camp nom es obligatori.',
+            'username.string' => 'El nom ha de ser una cadena de text.',
+            'username.max' => 'El nom no pot tenir més de 30 caràcters.',
             'correu.required' => 'El camp correu electronic es obligatori.',
             'correu.email' => 'El correu electronic proporcionat no es vàlid.',
             'correu.unique' => 'El correu ja existeix a la base de dades.',
         ]);
 
         $username = htmlspecialchars($request->username);
-        $email = htmlspecialchars($request->email);
-        $empresa_id = htmlspecialchars($request->empresa_id);
+        $email = htmlspecialchars($request->correu);
+        $empresa_id = $request->empresa_id;
         $password = Str::random(12);
 
         $usuari = new User();
         $usuari->username = $username;
         $usuari->email = $email;
         $usuari->password = Hash::make($password);
+        $usuari->nom = $username;
         $usuari->hora = now();
-        $usuari->empresa_id = $request->empresa_id;
+        $usuari->empresa_id = $empresa_id;
         $usuari->save();
+
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = Auth::user()->username . ' crea l\'usuari ' . $usuari->nom;
+        $log->ipClient = request()->ip();
+        $log->save();
 
         $details = [
             'email' => $usuari->email,
@@ -86,6 +101,7 @@ class EmpresaController extends Controller
         ];
         //Enviem un correu amb les dades de l'usuari
         Mail::to($usuari->email)->send(new MiMailable($details));
+        return redirect()->route('empresa');
     }
 
 }

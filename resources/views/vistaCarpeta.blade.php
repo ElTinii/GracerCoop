@@ -60,9 +60,9 @@
                 </ul>
             </div>
         @endif
-         @if (((Auth::user()->admin)) || Str::startsWith("resources/empresas/$nomEmpresa/CPersonal",$ruta) )
+         @if ((((Auth::user()->admin)) || Str::startsWith("resources/empresas/$nomEmpresa/CPersonal",$ruta)) && isset($id) )
                 <button class="btn-success" data-toggle="modal" data-target="#crearCarpeta">Crear Carpeta</button>
-                <input type="file" name="fitxer" id="fitxer">
+                <button class="btn-success" data-toggle="modal" data-target="#pujarFitxer">Pujar Fitxer</button>
         @endif
             <div class="row">
             @if (isset($carpetasFilles))
@@ -82,8 +82,34 @@
                         </div>
                         </a>
                         <div class="card-footer text-right">
-                            @if (!(is_null($carpeta->carpeta_Padre)))
+                            @if (!(is_null($carpeta->carpeta_padre)))
                             <button class="btn-danger" data-carpeta-id="{{$carpeta->carpeta_id}}" data-toggle="modal" data-target="#elimCarp"><img src="{{asset('img/eliminar.png')}}" alt="" id="eliminar"></button>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+              @endforeach
+            @endif
+            @if (isset($arxius))
+              @foreach ($arxius as $arxiu)
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>{{$arxiu->nom}}</h4>
+                        </div>
+                        <div class="card-body">
+                            @if (Str::endsWith($arxiu->nom, '.pdf'))
+                            <img src="{{asset('img/imagen_pdf.png')}}" id="carp" alt="carpeta"> 
+                            @elseif (Str::endsWith($arxiu->nom, '.docx'))
+                            <img src="{{asset('img/imagen_docx.png')}}" id="carp" alt="carpeta"> 
+                            @elseif (Str::endsWith($arxiu->nom, '.png'))
+                            <img src="{{asset('img/imagen_png.png')}}" id="carp" alt="carpeta"> 
+                            @endif
+                        </div>
+                        </a>
+                        <div class="card-footer text-right">
+                            @if (!(is_null($arxiu->carpeta_padre)))
+                            <button class="btn-danger" data-carpeta-id="{{$arxiu->arxiu_id}}" data-toggle="modal" data-target="#elimCarp"><img src="{{asset('img/eliminar.png')}}" alt="" id="eliminar"></button>
                             @endif
                         </div>
                     </div>
@@ -136,6 +162,30 @@
                             <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
                             <button type="button" id="SielCarp" class="btn btn-success" data-carpeta-id="" @if(isset($id))data-pare-id="{{$id}}"@endif>Si</button>
                         </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="pujarFitxer" tabindex="-1" role="dialog" aria-labelledby="pujarFitxer" aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-color">
+                    <form action="/pujarFitxers" method="post" id="fitxers" enctype="multipart/form-data">
+                    @csrf
+                        <div class="modal-header">
+                            <h4>Pujar fitxers</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Seleccioni l'arxiu que vols pujar</h4>
+                            <input type="file" name="fitxers" id="fitxers" accept=".png,.pdf,.docx">
+                            <input type="text" name="id" id="id" @if(isset($id)) value="{{$id}}" @endif hidden>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tancar</button>
+                            <button type="submit" id="btnfitx" class="btn btn-success" data-carpeta-id="">Enviar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

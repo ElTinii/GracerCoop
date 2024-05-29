@@ -90,7 +90,6 @@ class PanelController extends Controller
         ];
         //Enviem un correu amb les dades de l'usuari
         Mail::to($usuari->email)->send(new MiMailable($details));
-        
         $log = new Logs();
         $log->data = now()->format('Y-m-d');
         $log->hora = now()->format('H:i:s');

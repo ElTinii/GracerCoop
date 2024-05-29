@@ -84,7 +84,7 @@ $('#elimCarp').on('show.bs.modal', function (event) {
     modal.find('#SielCarp').data('carpeta-id', carpetaId);
 });
 
-$('#filaEmpresa').click(function(){
+$('[id^="filaEmpresa"]').click(function(){
     let empresa_id = $(this).data('empresa-id');
     window.location.href = '/empresas/' + empresa_id;
 });
