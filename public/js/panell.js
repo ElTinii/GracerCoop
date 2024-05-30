@@ -88,3 +88,8 @@ $('[id^="filaEmpresa"]').click(function(){
     let empresa_id = $(this).data('empresa-id');
     window.location.href = '/empresas/' + empresa_id;
 });
+
+$('[id^="filaLog"]').click(function(){
+    let empresa_id = $(this).data('empresa-id');
+    window.location.href = '/empresas/' + empresa_id;
+});

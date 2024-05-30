@@ -67,7 +67,7 @@
             <div class="row">
             @if (isset($carpetasFilles))
               @foreach ($carpetasFilles as $carpeta)
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                     @if (isset ($link))
                         <a href="/carpetasInici/{{$carpeta->carpeta_id}}" id="carpetas">
@@ -75,7 +75,7 @@
                         <a href="/carpetas/{{$carpeta->carpeta_id}}" id="carpetas">
                         @endif
                         <div class="card-header">
-                            <h4>{{$carpeta->nom}}</h4>
+                            <h6>{{$carpeta->nom}}</h6>
                         </div>
                         <div class="card-body">
                         <img src="{{asset('img/folder-2813518_1280.png')}}" id="carp" alt="carpeta"> 
@@ -92,24 +92,24 @@
             @endif
             @if (isset($arxius))
               @foreach ($arxius as $arxiu)
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{$arxiu->nom}}</h4>
+                            <h6>{{$arxiu->nom}}</h6>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body d-flex justify-content-center align-items-center">
                             @if (Str::endsWith($arxiu->nom, '.pdf'))
-                            <img src="{{asset('img/imagen_pdf.png')}}" id="carp" alt="carpeta"> 
+                            <img src="{{asset('img/imagen_pdf.png')}}" id="arx" alt="carpeta"> 
                             @elseif (Str::endsWith($arxiu->nom, '.docx'))
-                            <img src="{{asset('img/imagen_docx.png')}}" id="carp" alt="carpeta"> 
+                            <img src="{{asset('img/imagen_docx.png')}}" id="arx" alt="carpeta"> 
                             @elseif (Str::endsWith($arxiu->nom, '.png'))
-                            <img src="{{asset('img/imagen_png.png')}}" id="carp" alt="carpeta"> 
+                            <img src="{{asset('img/imagen_png.png')}}" id="arx" alt="carpeta"> 
                             @endif
                         </div>
                         </a>
                         <div class="card-footer text-right">
                             @if (!(is_null($arxiu->carpeta_padre)))
-                            <button class="btn-danger" data-carpeta-id="{{$arxiu->arxiu_id}}" data-toggle="modal" data-target="#elimCarp"><img src="{{asset('img/eliminar.png')}}" alt="" id="eliminar"></button>
+                            <button class="btn-danger" data-arxiu-id="{{$arxiu->arxiu_id}}" data-toggle="modal" data-target="#elimArx"><img src="{{asset('img/eliminar.png')}}" alt="" id="eliminar"></button>
                             @endif
                         </div>
                     </div>
@@ -186,6 +186,24 @@
                             <button type="submit" id="btnfitx" class="btn btn-success" data-carpeta-id="">Enviar</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="elimArx" tabindex="-1" role="dialog" aria-labelledby="emilArx" aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-color">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Estas segur que vols eliminar l'Arxiu?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                            <button type="button" id="SielCarp" class="btn btn-success" data-carpeta-id="" @if(isset($id))data-pare-id="{{$id}}"@endif>Si</button>
+                        </div>
                 </div>
             </div>
         </div>

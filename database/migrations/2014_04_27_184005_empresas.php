@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('empresa', function (Blueprint $table) {
             $table->id('empresa_id');
             $table->string('nom');
+            $table->string('cif')->unique();
             $table->string('img')->nullable();
             $table->timestamps();
         });

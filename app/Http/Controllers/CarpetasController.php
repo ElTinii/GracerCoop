@@ -72,11 +72,12 @@ class CarpetasController extends Controller
 
     public function pujarFitxers(Request $request){
         $request->validate([
-            'fitxers' => 'required',
-            'fitxers.*' => 'mimes:jpeg,jpg,png,pdf,docx',
+            'fitxers' => 'required|max:4096',
+            'fitxers' => 'mimes:png,pdf,docx',
         ], [
             'fitxers.required' => 'El camp fitxer es obligatori.',
-            'fitxers.*.mimes' => 'El fitxer ha de ser un arxiu de tipus png, pdf o docx.',
+            'fitxers.mimes' => 'El fitxer ha de ser un arxiu de tipus png, pdf o docx.',
+            'fitxers.max' => 'El fitxer no pot ser mes gran de 4MB.', 
         ]);
         $file = $request->file('fitxers');
 

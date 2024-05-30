@@ -10,5 +10,6 @@
     <p>Usuari: {{ $details['email'] }}</p>
     <p>Contrasenya: {{ $details['password'] }}</p>
     <p>Recorda que al entrar canvia la contrasenya per tenir una major seguretat, si entras desde aquest link podras canviar la contrasenya: http://gracercoop.com</p>
+<!-- Canviar link de canviar contrasenya a prova.gracer.coop -->
 </body>
 </html>

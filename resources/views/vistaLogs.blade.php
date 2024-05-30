@@ -81,7 +81,7 @@
                             </thead>
                             <tbody>
                             @foreach ($logs as $log)
-                                <tr class="clickable-row" idatelog="{{$log->log_id}}" id="filaLogs">
+                                <tr class="clickable-row" idatelog="{{$log->log_id}}" id="filaLogs{{$log->log_id}}">
                                     <td>{{ $log->client_id }}</td>
                                     <td>{{ $log->accio }}</td>
                                     <td>{{$log->data}}</td>
