@@ -1,0 +1,368 @@
+/**
+Colors del Logo
+Blau: #3F6FB5
+Vermell: #B82A27
+Blanc: #FDFDFD
+**/
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
+/* General */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin-top: 0px;
+    padding: 0;
+}
+.row{
+    margin: 0 auto;
+}
+/**Header**/
+header{
+   text-align: center;
+   width: 100%;
+   position:relative;
+}
+nav{
+    width: 100%;
+    background-color: #FDFDFD;
+    z-index: 1000;
+}
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+nav div ul li{
+    display: inline;
+    padding-right: 20px;
+}
+.dreta{
+    display: flex;
+    justify-content: right;
+}
+header a{
+    color : #B82A27;
+    font-weight: 700;
+}
+header a:hover{
+    color: #3F6FB5;
+}
+header img{
+    width: 65px;
+    height: 65px;
+}
+/**Inici**/
+div#inici{
+    padding-top: 400px;
+    padding-bottom: 400px;
+    background-image: url('/img/quisom.png');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+}
+div#inici h1{
+    margin-bottom: 0%;
+    justify-content: right;
+    display: flex;
+}
+div#slogan{
+    margin-right: 30px;
+    color: #3F6FB5;
+    background-color: #ffffffc2;
+    text-align: center;
+}
+/**Qui Som**/
+#QuiSom{
+    background-image: url('/img/imagen_2024-04-22_143459290.png');
+    background-attachment: fixed ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+div.centrar{
+    text-align: center;
+    width: 70%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(255, 255, 255, 0.756);
+    border-radius: 10px;
+}
+.centre{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+footer{
+    background-color: rgba(0, 0, 0, 0.532);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.color{
+    background-color: #61acf1;
+    color: #C2D1AF;
+}
+div.pad{
+    background-color: rgba(255, 255, 255, 0.756);
+    border-radius: 50%;
+    width: 500px;
+    height: auto;
+    padding: 50px;
+    padding-left: 60px;
+}
+div.cercle{
+    background-color: rgba(255, 255, 255, 0.756);
+    border-radius: 50%;
+    width: 300px;
+    height: 250px;
+    padding: 10px;
+    padding-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.gris{
+    background-color: rgba(245, 209, 209, 0.532);
+    color: white;
+    color: black;
+}
+p{
+    padding: 10px;
+}
+h3{
+    padding: 30px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #B82A27;
+}
+div.serv{
+    padding: 30px;
+    background-color: rgb(182, 227, 220);
+    color: black;
+}
+.quadrat{
+    padding: 20px;
+    box-shadow: inset;
+    height: 300px;
+    width: 300px;
+    background-color: rgb(208, 241, 225) ;
+    margin: 10px;
+    margin-left: 50px;
+}
+body.contacte{
+    padding-left: 10px;
+}
+/**Que Fem**/
+#QueFem{
+    width: 100%;
+    height: 700px;
+}
+div#queFem h1{
+    margin: 30px;
+    width: 100%;
+}
+.quadrats{
+    width: 250px;
+    height: 250px;
+    background-color: #3f6eb545;
+    border-radius: 20%;
+    text-align: center;    
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.col-5{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+h1{
+    color:#3F6FB5 ;
+}
+.mostrar{
+    background-color: rgba(255, 255, 255, 0.756);
+    border: 1px solid #000000;
+    border-radius: 10%;
+    padding: 20px;
+    z-index: -1;
+}
+div.mostrar ul li{
+    padding-top: 20px;
+    font-size: 16px;
+}
+/**Com Ho Fem**/
+#ComHoFem{
+    background-image: url('/img/FotoComHoFem.jpg');
+    background-attachment: fixed ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.centrem{
+    display: flex;
+    justify-content: center;
+}
+.centrem img{
+height: 200px;
+padding-top:30px;
+padding-bottom: 30px;
+padding-left: 20px;
+padding-right: 20px;
+}
+div#clients h1{
+    text-align: center;
+}
+
+div.container-fluid{
+    padding: 0px;
+    margin:0px;
+}
+.fem {
+    position: relative;
+    box-sizing: border-box;
+}
+.col {
+    height: 200px; /* Ajusta este valor a la altura que desees */
+}
+.h-400 {
+    display: flex;
+    margin: 10px;
+    margin-left: 0px;
+    padding-left: 20px;
+}
+.h-400:hover {
+    color: white;
+    background-color: #3f6eb5;
+}
+div.col{
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+div.col ul li{
+    padding: 0px;
+    font-size: 16px;
+}
+
+div.col ul{
+    padding-top: 10px;
+    padding-left: 0px;
+}
+
+#QueFem{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+div#QueFem h1{
+    width: 100%;
+    margin-bottom: 50px;
+}
+h5.fem{
+    color: #3F6FB5;
+
+}
+h5 img{
+    width: 65px;
+    height: 65px;
+}
+#renda{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+#textrenda{
+    justify-content: center;
+    text-align: center;
+}
+.container{
+padding: 0px;
+}
+
+div.container{
+    margin-bottom: 25px;
+}
+#preu {
+    background-color: #3F6FB5;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+#informacio {
+    background-color: #fff;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+#informacio ul {
+    margin-bottom: 0px;
+    padding: 0;
+}
+
+#informacio button {
+    background-color: #3F6FB5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+#informacio ul li {
+    padding: 25px; /* Añade un poco de espacio alrededor de cada opción */
+    border-bottom: 1px solid #000000; /* Añade una línea debajo de cada opción */
+    list-style-type: none;
+}
+
+#informacio ul li:last-child {
+    border-bottom: none; /* Elimina la línea debajo de la última opción */
+}
+select#casella, select#venut, select#autonom, select#contactem, select#trobat, select#solicitant, select#provincies{
+    padding: 10px;
+}
+a{
+    color: white;
+}
+a:hover{
+    color:white;
+}
+div.col-4 div.container-contact100 div.wrap-contact100 {
+    width: 1000px;
+    padding: 20px;
+}
+div.hov{
+    margin-top: 60px;
+}
+.bordes{
+    text-align: center;
+    padding: 10px;
+    border: 3px solid black;
+}
+.bordes h1{
+    color: #3F6FB5;
+}
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+#whats{
+    margin-right: 10px;
+    height: 15px;
+    width: 15px;
+}
+#ofertas2{
+    margin-top: 800px;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}

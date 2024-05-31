@@ -107,20 +107,20 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a href="{{ url('/') }}#QuiSom">QUI SOM?</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}#QueFem">QUI SOM?</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
-                <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
-                <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
-                <li class="nav-item"> <a href="{{ route('renta') }}">RENDA</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
-                <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
-                <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>
+                <li class="nav-item"><a href="{{ url('indexEs') }}#QuiSom">QUIENES SOMOS?</a></li>
+                <li class="nav-item"><a href="{{ url('indexEs') }}#QueFem">QUÉ HACEMOS?</a></li>
+                <li class="nav-item"><a href="{{ url('indexEs') }}#ComHoFem">CÓMO LO HACEMOS?</a></li>
+                <li class="nav-item"><a href="{{ route('subvencionesEs') }}">SUBVENCIONES</a></li>
+                <li><a href="./index.html"><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+                <li class="nav-item"> <a href="{{ route('rentaEs') }}">RENTA</a></li>
+                <li class="nav-item"><a href="{{ url('indexEs') }}#Clients">CLIENTES</a></li>
+                <li class="nav-item"><a href="">NOTICIAS</a></li>
+                <li class="nav-item"><a href="{{ route('clientsEs') }}">CONTACTO</a></li>
                 <li class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">IDIOMA</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Catalá</a>
-                        <a class="dropdown-item" href="{{ route('indexEs') }}">Español</a>
+                        <a class="dropdown-item" href="{{ url('/') }}">Catalá</a>
+                        <a class="dropdown-item" href="#">Español</a>
                     </div>
                 </li>
                 <li class="nav-item"><a href="{{ route('login') }}">AREA PRIVADA</a></li>
@@ -133,7 +133,7 @@
 		<div class="container-contact100">
 			<div class="wrap-contact100">
 				<form class="contact100-form validate-form" action="https://formsubmit.co/thos.vazquez.alex@gmail.com" method="POST">
-					<input type="hidden" name="_next" value="http://gracercoop/contacte.html">
+					<input type="hidden" name="_next" value="http://127.0.0.1:5500/contacte.html">
 					<input type="hidden" name="_captcha" value="false">
 					<span class="contact100-form-title">
 						Contactans
@@ -226,4 +226,5 @@
 				</div>
 			</div>
 		</div>
-	</body></html>
+	</body>
+</html>

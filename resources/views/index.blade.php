@@ -6,25 +6,30 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <script type="module" src="./js/mostrar.js"></script>
-    <title>Gracer Coop</title>
+    <link rel="stylesheet" href="{{ asset('CSS/vistaAnonim.css') }}">
+    <title>Inici</title>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a href="#QuiSom">QUI SOM?</a></li>
-                <li class="nav-item"><a href="#QueFem">QUÈ FEM?</a></li>
-                <li class="nav-item"><a href="#ComHoFem">COM HO FEM?</a></li>
-                <li class="nav-item"><a href="#Clients">CLIENTS</a></li>
-                <li><a href="./index.html"><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
-                <li class="nav-item"><a href="./subvencions.html">SUBVENCIONS</a></li>
-                <li class="nav-item"><a href="{{ route('contacte') }}">CONTACTE</a></li>
-                <li class="nav-item"><a href="">NOTICIES</a></li>
-                <li class="nav-item"> <a href="./renda.html">RENDA</a></li>
-                <li class="nav-item"><a href="">IDIOMA</a></li>
-                <li class="nav-item"><a href="{{ route('login') }}">Area Privada</a></li>
+                <li class="nav-item"><a href="{{ url('/') }}#QuiSom">QUI SOM?</a></li>
+                <li class="nav-item"><a href="{{ url('/') }}#QueFem">QUI SOM?</a></li>
+                <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
+                <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
+                <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+                <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
+                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
+                <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
+                <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">IDIOMA</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Catalá</a>
+                        <a class="dropdown-item" href="{{ route('indexEs') }}">Español</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="{{ route('login') }}">AREA PRIVADA</a></li>
             </ul>
         </div>
     </nav>
@@ -39,7 +44,7 @@
     <div class="centre principal" id="QuiSom">
         <div class="centrar">
             <div>
-                <h1>Qui som</h1>
+                <h1>Qui som?</h1>
             </div>
             <p>Som un equip de professionals amb gran experiència en el món de l&#39;empresa, la consultoria,
                 l&#39;assessoria i la formació que després de diferents col·laboracions decidim organitzar-nos
@@ -58,7 +63,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <h5><img src="{{ asset('img/Laboral.jpg') }}" alt="">Laboral</h5>
+                        <h5 class="fem"><img src=" {{ asset('img/Laboral.jpg') }}" alt="">Laboral</h5>
                         <div class="col h-400 mb-4 fem" id="laboral">
                             <ul>
                                 <li>
@@ -74,7 +79,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <h5><img src="{{ asset('img/RecursosHumans.jpg') }}" alt="">Recursos Humans</h5>
+                        <h5 class="fem"><img src=" {{ asset('img/RecursosHumans.jpg') }}" alt="">Recursos Humans</h5>
                         <div class="col h-400 mb-4 fem" id="recursos">
                             <ul>
                                 <li>Selecció de personal</li>
@@ -83,7 +88,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <h5> <img src="{{ asset('img/Fiscal.jpg') }}" alt="">Fiscal</h5>
+                        <h5 class="fem"> <img src=" {{ asset('img/Fiscal.jpg') }}" alt="">Fiscal</h5>
                         <div class="col h-400 mb-4 fem" id="fiscal">
                             <ul>
                                 <li>Planificació fiscal per a minimitzar la càrrega impositiva.</li>
@@ -93,7 +98,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <h5> <img src="{{ asset('img/Contabilidad.jpg') }}" alt="">Comptabilitat</h5>
+                        <h5 class="fem"> <img src=" {{ asset('img/Contabilidad.jpg') }}" alt="">Comptabilitat</h5>
                         <div class="col h-400 mb-4 fem" id="comptabilitat">
                             <ul>
                                 <li>Gestió de la comptabilitat.</li>
@@ -105,8 +110,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <h5><img src="{{ asset('img/societari.jpg') }}" alt="">Societari</h5>
+                    <div class="col hov">
+                        <h5 class="fem"><img src=" {{ asset('img/societari.jpg') }}" alt="">Societari</h5>
                         <div class="col h-400 fem mb-4" id="societari">
                             <ul>
                                 <li>Constitució i dissolució de societats.</li>
@@ -116,8 +121,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col">
-                        <h5> <img src="{{ asset('img/Subvencions.jpg') }}" alt="">Subvencions</h5>
+                    <div class="col hov">
+                        <h5 class="fem"><img src=" {{ asset('img/Subvencions.jpg') }}" alt="">Subvencions</h5>
                         <div class="col h-400 fem mb-4" id="subvencions">
                             <ul>
                                 <li>Acompanyament en la petició i seguiment posterior.</li>
@@ -126,8 +131,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col">
-                        <h5> <img src="{{ asset('img/Acompanyament economic.jpg') }}" alt="">Acompanyament econòmic</h5>
+                    <div class="col hov">
+                        <h5 class="fem"> <img src=" {{ asset('img/Acompanyament economic.jpg') }}" alt="">Acompanyament econòmic</h5>
                         <div class="col h-400 fem mb-4" id="acompanyament">
                             <ul>
                                 <li>Acompanyament en la gestió integral</li>
@@ -135,8 +140,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col">
-                        <h5> <img src="{{ asset('img/Particular.jpg') }}" alt="">Particulars</h5>
+                    <div class="col hov">
+                        <h5 class="fem"> <img src=" {{ asset('img/Particular.jpg') }}" alt="" >Particulars</h5>
                         <div class="col h-400 fem mb-4" id="particulars">
                             <ul>
                                 <li>Declaracions de renda i patrimoni</li>
@@ -168,42 +173,42 @@
                 innovació, creativitat i generació de valor.</p>
         </div>
     </div>
-        <h1>Els nostres clients</h1>
-        <div id="clients" class="carousel slide" data-ride="carousel">
+        <h1>Clients</h1>
+        <div id="Clients" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="centrem">
-                    <a href="https://www.meseducacio.coop/"><img src="{{ asset('img/Logo +Educació.png') }}" alt="+Educacio"></a>
-                    <a href="https://blinkvideo.es/"><img src="{{ asset('img/Blink_Full_Logo_cat.png') }}" alt="Blink"></a>
-                    <a href="https://habicoop.cat/"><img src="{{ asset('img/Logo Habicoop amb lletres.JPG') }}" alt="Habicoop"></a>
+                    <a href="https://www.meseducacio.coop/"><img src=" {{ asset('img/Logo +Educació.png') }}" alt="+Educacio"></a>
+                    <a href="https://blinkvideo.es/"><img src=" {{ asset('img/Blink_Full_Logo_cat.png') }}" alt="Blink"></a>
+                    <a href="https://habicoop.cat/"><img src=" {{ asset('img/Logo Habicoop amb lletres.JPG') }}" alt="Habicoop"></a>
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="centrem">
                     <a href="https://www.mixite.cat/"><img src=" {{ asset('img/Recurso 7.png') }}" alt="Mixité"></a>
-                    <a href="https://lleurequalia.cat/"><img src="{{ asset('img/Qualia_logos_posit.png') }}" alt="Qualia"></a>
-                    <a href="https://www.polellmontseny.com/"><img src="{{ asset('img/MARCA_EL POLELL (1).jpg') }}" alt="El Polell"></a>
+                    <a href="https://lleurequalia.cat/"><img src=" {{ asset('img/Qualia_logos_posit.png') }}" alt="Qualia"></a>
+                    <a href="https://www.polellmontseny.com/"><img src=" {{ asset('img/MARCA_EL POLELL (1).jpg') }}" alt="El Polell"></a>
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="centrem">
-                    <a href="https://ignia.cat/"><img src="{{ asset('img/logotip_positiu.png') }}" alt="ignia"></a>
-                    <a href="https://plataformajoveslescorts.wordpress.com/"><img src="{{ asset('img/LogoPlataformaCOLOR-01.png') }}" alt="plataformajoveslescorts"></a>
-                    <a href="https://instituciobalmes.wordpress.com/"><img src="{{ asset('img/Logo_Institucio (1).JPG') }}" alt="institucio balmes"></a>
+                    <a href="https://ignia.cat/"><img src=" {{ asset('img/logotip_positiu.png') }}" alt="ignia"></a>
+                    <a href="https://plataformajoveslescorts.wordpress.com/"><img src=" {{ asset('img/LogoPlataformaCOLOR-01.png') }}" alt="plataformajoveslescorts"></a>
+                    <a href="https://instituciobalmes.wordpress.com/"><img src=" {{ asset('img/Logo_Institucio (1).JPG') }}" alt="institucio balmes"></a>
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="centrem">
-                    <a href="https://fundacioseira.coop/"><img src="{{ asset('img/Logo Seira.png') }}" alt="Siera"></a>
-                    <a href="https://gatuari.cat/"><img src="{{ asset('img/logo gran sense fons.png') }}" alt="gatuari"></a>
-                    <a href="https://afadisbaixmontseny.org/"><img src="{{ asset('img/logo alta resolució.jpg') }}" alt="afadis"></a>
+                    <a href="https://fundacioseira.coop/"><img src=" {{ asset('img/Logo Seira.png') }}" alt="Siera"></a>
+                    <a href="https://gatuari.cat/"><img src=" {{ asset('img/logo gran sense fons.png') }}" alt="gatuari"></a>
+                    <a href="https://afadisbaixmontseny.org/"><img src=" {{ asset('img/logo alta resolució.jpg') }}" alt="afadis"></a>
                 </div>
               </div>
               <div class="carousel-item">
                 <div class="centrem">
-                    <a href="https://www.meseducacio.coop/"><img src="{{ asset('img/CDJ-logo-03.jpg') }}" alt="CDJ"></a>
-                    <a href="https://www.remenat.org/"><img src="{{ asset('img/drawing.png') }}" alt="remenat"></a>
-                    <a href="https://www.cooperativestreball.coop/"><img src="{{ asset('img/Cooperatives de Treball.jpg') }}" alt="Cooperatives de Treball"></a>
+                    <a href="https://www.meseducacio.coop/"><img src=" {{ asset('img/CDJ-logo-03.jpg') }}" alt="CDJ"></a>
+                    <a href="https://www.remenat.org/"><img src=" {{ asset('img/drawing.png') }}" alt="remenat"></a>
+                    <a href="https://www.cooperativestreball.coop/"><img src=" {{ asset('img/Cooperatives de Treball.jpg') }}" alt="Cooperatives de Treball"></a>
                 </div>
               </div>
             </div>

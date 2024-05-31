@@ -2,7 +2,7 @@
 <!-- saved from url=(0054)https://colorlib.com/etc/cf/ContactFrom_v17/index.html -->
 <html lang="en" data-lt-installed="true"><head><meta http-equiv="Content-Type"
 			content="text/html; charset=UTF-8">
-		<title>Contacte</title>
+		<title>Formulari Renda</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./CSS/style.css">
 		<link rel="stylesheet" type="text/css"
@@ -133,10 +133,10 @@
 		<div class="container-contact100">
 			<div class="wrap-contact100">
 				<form class="contact100-form validate-form" action="https://formsubmit.co/thos.vazquez.alex@gmail.com" method="POST">
-					<input type="hidden" name="_next" value="http://gracercoop/contacte.html">
+					<input type="hidden" name="_next" value="http://127.0.0.1:5500/formulari_contacte.html">
 					<input type="hidden" name="_captcha" value="false">
 					<span class="contact100-form-title">
-						Contactans
+						Formulari de Renta
 					</span>
 					<label class="label-input100" for="first-name">Nom i cognoms</label>
 					<div class="wrap-input100 rs1-wrap-input100 validate-input"
@@ -164,6 +164,128 @@
 							placeholder="Ex. +34 101010101">
 						<span class="focus-input100"></span>
 					</div>
+                    <label class="label-input100" for="direccio">Direccio Completa*</label>
+					<div class="wrap-input100 validate-input">
+						<input id="direccio" class="input100" type="text" name="direccio"
+							placeholder="C\ ">
+						<span class="focus-input100"></span>
+					</div>
+                    <label class="label-input100" for="DNI">DNI*</label>
+					<div class="wrap-input100 validate-input">
+						<input id="DNI" class="input100" type="text" name="DNI"
+							placeholder="00000000P">
+						<span class="focus-input100"></span>
+					</div>
+                    <label class="label-input100" for="dataDNI">Data de caducitat del DNI*</label>
+					<div class="wrap-input100 validate-input">
+						<input id="dataDNI" class="input100" type="date" name="dataDNI">
+						<span class="focus-input100"></span>
+					</div>
+					<label class="label-input100" for="trobat">HAS TREBALLAT PER MÉS D’UNA EMPRESA</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Treballar mes d'una empresa" id="trobat">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+							<option value="si">SÍ</option>
+							<option value="no">NO</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <label class="label-input100" for="casella">Has llogat una vivenda l'any anterior</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Llogat vivenda" id="casella">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+                            <option value="si">Si</option>
+                            <option value="no">No</option>    
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <label class="label-input100" for="venut">Has venut algun inmoble l'any anterior</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Venut inmoble" id="venut">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+                            <option value="si">Si</option>
+                            <option value="no">No</option>    
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <label class="label-input100" for="autonom">Has sigut autonom l'any anterior</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Autonom" id="autonom">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+                            <option value="si">Si</option>
+                            <option value="no">No</option>    
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+					<label class="label-input100" for="trobat">HAS REBUT MÉS DE 10.000€ EN BIZUMS</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Més de 10.000€ en bizum" id="trobat">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+                            <option value="si">Si</option>
+							<option value="no">No</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+					<label class="label-input100" for="trobat">TENS CRIPTOMONEDES</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Tens Criptomonedes" id="trobat">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+                            <option value="si">Si</option>
+							<option value="no">No</option> 
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+					<label class="label-input100" for="trobat">HAS VENUT O REBUT DINERS D'ALGUN TIPUS DE PLATAFORMA ONLINE</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Plataforma online" id="trobat">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+							<option value="si">Si</option>
+							<option value="no">No</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+					<label class="label-input100" for="trobat">HAS VENUT ACCIONS</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="Venut accions" id="trobat">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+							<option value="si">Si</option>
+							<option value="no">No</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <label class="label-input100" for="casella">Casella 505 de l'any anterior</label>
+					<div class="wrap-input100 validate-input">
+						<input id="casella" class="input100" type="text" name="casella">
+						<span class="focus-input100"></span>
+					</div>
+                    <label class="label-input100" for="contactem">Com vols que contactem amb tu?</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="" id="contactem">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+                            <option value="whatsapp">WhatsApp</option>
+							<option value="telefon">Telefon</option>
+                            <option value="email">Email</option>    
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <label class="label-input100" for="trobat">Com ens has trobat?</label>
+                    <div class="wrap-input100 validate-input">
+                        <select class="input100" name="" id="trobat">
+                            <option value="" selected disabled>Seleccioni una opció</option>
+                            <option value="socials">Xarxes socials</option>
+                            <option value="Cartell">Cartell</option>    
+                            <option value="recomanacio">Recomanació</option>
+							<option value="internet">Internet</option>  
+                            <option value="altres">Altres</option>  
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+                    <label class="label-input100" for="casella">Codi de descompte</label>
+					<div class="wrap-input100 validate-input">
+						<input id="casella" class="input100" type="text" name="casella"
+							placeholder="Introdueix el codig de descompte">
+						<span class="focus-input100"></span>
+					</div>
 					<label class="label-input100" for="message">Missatge *</label>
 					<div class="wrap-input100 validate-input"
 						data-validate="Message is required">
@@ -177,7 +299,7 @@
 						<label class="" for="politica">Accepto la política de protecció de dades</label>
 					</div>
 					<div class="container-contact100-form-btn">
-						<button class="contact100-form-btn">
+						<button type="submit" class="contact100-form-btn">
 							Enviar
 						</button>
 					</div>
@@ -190,10 +312,10 @@
 						</div>
 						<div class="flex-col size2">
 							<span class="txt1 p-b-20">
-								On som?
+								Vols contactar amb nosaltres?
 							</span>
 							<span class="txt2">
-								Carrer Escultor Llimona 2,<br> 08210-Barberà del valles
+								Contacta clicant <a href="./contacte.html">aquí</a>.
 							</span>
 						</div>
 					</div>
@@ -203,7 +325,7 @@
 						</div>
 						<div class="flex-col size2">
 							<span class="txt1 p-b-20">
-								Contactans per aqui
+								També pots trucar-nos
 							</span>
 							<span class="txt3">
 								<img src="./recursos/whatsapp.png" id="whats" alt="">+34 616 771 103
@@ -216,10 +338,10 @@
 						</div>
 						<div class="flex-col size2">
 							<span class="txt1 p-b-20">
-								O per aqui...
+								O enviant un correu a ...
 							</span>
 							<span class="txt3">
-								info@gracer.coop
+								renda@gracer.coop
 							</span>
 						</div>
 					</div>

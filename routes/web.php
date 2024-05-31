@@ -69,3 +69,20 @@ Route::middleware('auth', 'verified')->group(function () {
         return view('perfil');
     })->name('perfil');
 });
+
+//Aqui ponemos las rutas que no necesitan estar verificadas con la session iniciada ya que son las vistas de anonimo
+Route::view('/quienes-somos', 'QuiSom')->name('quienes-somos');
+Route::view('/que-hacemos', 'QueFem')->name('que-hacemos');
+Route::view('/como-lo-hacemos', 'ComHoFem')->name('como-lo-hacemos');
+Route::view('/subvenciones', 'subvencions')->name('subvenciones');
+Route::view('/renda', 'renda')->name('renda');
+Route::view('/clientes', 'Clients')->name('clientes');
+Route::view('/noticias', 'noticias')->name('noticias');
+Route::view('/contacto', 'contacte')->name('contacto');
+Route::view('/indexEs', 'espanyol.index')->name('indexEs');
+Route::view('/contactoRenda', 'formulari')->name('contactoRenda');
+
+Route::view('/subvencionesEs', 'espanyol.subvencions')->name('subvencionesEs');
+Route::view('/rentaEs', 'espanyol.renda')->name('rentaEs');
+Route::view('/clientsEs', 'espanyol.contacto')->name('clientsEs');
+Route::view('/contactoRendaEs', 'espanyol.formulari_contacto')->name('contactoRendaEs');
