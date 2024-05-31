@@ -67,7 +67,18 @@
                     <div class="col">   
                         <h1>Logs</h1>
                         <div>
-                        <h4>Informacio dels logs</h4>
+                        @if(isset($log))
+                        <div>
+                            <h4>Informacio dels logs</h4>
+                            <div class="col">
+                                <p>Client: {{$nomUser}}</p>
+                                <p>Accio: {{$log->accio}}</p>
+                                <p>Data: {{$log->data}}</p>
+                                <p>Hora: {{$log->hora}}</p>
+                                <p>IP: {{$log->ipClient}}</p>
+                            </div>
+                        </div>
+                        @endif
                         </div>
                         <table id="myTable">
                             <thead>
@@ -81,7 +92,7 @@
                             </thead>
                             <tbody>
                             @foreach ($logs as $log)
-                                <tr class="clickable-row" idatelog="{{$log->log_id}}" id="filaLogs{{$log->log_id}}">
+                                <tr class="clickable-row" data-log-id="{{$log->log_id}}" id="filaLogs{{$log->log_id}}">
                                     <td>{{ $log->client_id }}</td>
                                     <td>{{ $log->accio }}</td>
                                     <td>{{$log->data}}</td>

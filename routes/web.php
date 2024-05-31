@@ -50,6 +50,7 @@ Route::middleware('auth', 'verified', 'admin')->group(function () {
     Route::post('/empresa/afegir', [EmpresaController::class, 'afegirUsuari']);
     Route::get('/empresas/{id}', [EmpresaController::class, 'mostrarUnaEmpresa'])->name('panel.show');
     Route::get('/logs', [PanelController::class, 'obtenirLogs'])->name('logs');
+    Route::get('log/{id}', [PanelController::class, 'infoLog'])->name('log');
     Route::get('/missatges')->name('logs');
     Route::get('/panell', [PanelController::class, 'Mostrar'])->name('admin.dashboard');
 });

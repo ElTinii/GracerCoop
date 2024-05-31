@@ -90,6 +90,11 @@ $('[id^="filaEmpresa"]').click(function(){
 });
 
 $('[id^="filaLog"]').click(function(){
-    let empresa_id = $(this).data('empresa-id');
-    window.location.href = '/empresas/' + empresa_id;
+    let log_id= $(this).data('log-id');
+    window.location.href = '/log/' + log_id;
+});
+
+
+$('#drop').click(function(){
+    $('#drop').toggleClass('show');
 });

@@ -75,7 +75,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        @endif                 
+                        @endif
                         @if(isset($empresaSelect) && isset($usuarisSelect))
                         <div id="empresaInfo">
                             <h4>Informacio de l'empresa</h4>
@@ -101,6 +101,9 @@
                                         <p>Dia de creacio: </p>
                                         <p>{{$usuari->created_at}}</p>
                                         <button>Editar</button>
+                                        @if($usuarisSelect->count() > 1)
+                                        <button class="btn-danger">Eliminar</button>
+                                        @endif
                                     </div>
                                 </div>
                                 @endforeach

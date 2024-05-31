@@ -49,8 +49,8 @@
             <h3 id="sidebar">Empresas</h3>
             
       </div>
-   <div id="page-content-wrapper">
-         <div class="container-fluid xyz">
+   <div id="page-content-wrapper" ondrop="drop(event)">
+         <div class="container-fluid xyz" id="drop">
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -93,7 +93,7 @@
             @if (isset($arxius))
               @foreach ($arxius as $arxiu)
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card" draggable="true">
                         <div class="card-header">
                             <h6>{{$arxiu->nom}}</h6>
                         </div>

@@ -134,4 +134,12 @@ class PanelController extends Controller
         $logs = Logs::all();
         return view('vistaLogs', compact('logs'));
     }
+    public function infoLog($id)
+    {
+        $log = Logs::where('log_id', $id)->first();
+        $nomUser = User::where('id', $log->client_id)->first();
+        $nomUser = $nomUser->username;
+        $logs = Logs::all();
+        return view('vistaLogs', compact('log', 'nomUser', 'logs'));
+    }
 }
