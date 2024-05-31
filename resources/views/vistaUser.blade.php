@@ -55,6 +55,7 @@
          <div class="container-fluid xyz">
             <div class="row">
             @foreach ($carpetasFilles as $carpeta)
+            @if($carpeta->carpeta_padre == null)
                 <div class="col-md-4">
                     <a href="/carpetas/{{$carpeta->carpeta_id}}" id="carpetas">
                     <div class="card">
@@ -71,6 +72,7 @@
                     </div>
                     </a>
                 </div>
+                @endif
               @endforeach
             </div>
          </div>

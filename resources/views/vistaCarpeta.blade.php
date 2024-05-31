@@ -8,6 +8,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/navbar.js')}}"></script>
     <script defer type="module" src="{{ asset('js/panell.js') }}"></script>
+    <script defer type="module" src="{{ asset('js/dragDrop.js') }}"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
     <title>Part Privada</title>
 </head>
@@ -49,8 +50,11 @@
             <h3 id="sidebar">Empresas</h3>
             
       </div>
-   <div id="page-content-wrapper" ondrop="drop(event)">
-         <div class="container-fluid xyz" id="drop">
+   <div id="page-content-wrapper" class="drop-area">
+         <div class="container-fluid xyz">
+        <div class="alert alert-danger" hidden="false" id="errors">
+            
+        </div>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -60,7 +64,7 @@
                 </ul>
             </div>
         @endif
-         @if ((((Auth::user()->admin)) || Str::startsWith("resources/empresas/$nomEmpresa/CPersonal",$ruta)) && isset($id) )
+         @if (isset($id) )
                 <button class="btn-success" data-toggle="modal" data-target="#crearCarpeta">Crear Carpeta</button>
                 <button class="btn-success" data-toggle="modal" data-target="#pujarFitxer">Pujar Fitxer</button>
         @endif

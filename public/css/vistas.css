@@ -279,3 +279,6 @@ img#eliminar{
 img#arx{
    width: 165px;
 }
+.dragging{
+   background-color: #8a8181;
+}
