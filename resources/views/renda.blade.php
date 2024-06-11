@@ -18,7 +18,7 @@
                 <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
                 <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
-                <li class="nav-item"> <a href="{{ route('renta') }}">RENDA</a></li>
+                <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
                 <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
                 <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>

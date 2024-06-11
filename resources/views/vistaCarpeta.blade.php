@@ -47,9 +47,36 @@
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
          <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            @if (Auth::user()->admin == 1)
+            @foreach ($empresas as $empresa)
             <h3 id="sidebar">Empresas</h3>
-            
+            <li class="nav-item">
+               <a class="nav-link" href="/empresas/{{$empresa->empresa_id}}">{{$empresa->nom}}</a>
+            </li>
+            @endforeach
+            @else
+            @foreach ($carpetas as $carpeta)
+            <h3 id="sidebar">Carpetas</h3>
+                <li>
+                    <a href="/carpetas/{{$carpeta->id}}">{{$carpeta->nom}}</a>
+                    @if ($carpeta->subcarpetas->count() > 0)
+                        <ul>
+                            @foreach ($carpeta->subcarpetas as $subcarpeta)
+                                <li><a href="/subcarpetas/{{$subcarpeta->id}}">{{$subcarpeta->nom}}</a></li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </li>
+            @endforeach
+            @endif
       </div>
+      <div class="toolbar w-100">
+                    <button class="btn mr-2" onclick="window.history.back();">🡠</button>
+      @if (isset($id) )
+                    <button class="btn mr-2" data-toggle="modal" data-target="#crearCarpeta">Crear Carpeta</button>
+                    <button class="btn mr-2" data-toggle="modal" data-target="#pujarFitxer">Pujar Fitxer</button>
+        @endif
+        </div>
    <div id="page-content-wrapper" class="drop-area">
          <div class="container-fluid xyz">
         <div class="alert alert-danger" hidden="false" id="errors">
@@ -64,11 +91,7 @@
                 </ul>
             </div>
         @endif
-         @if (isset($id) )
-                <button class="btn-success" data-toggle="modal" data-target="#crearCarpeta">Crear Carpeta</button>
-                <button class="btn-success" data-toggle="modal" data-target="#pujarFitxer">Pujar Fitxer</button>
-        @endif
-            <div class="row">
+            <div class="row" id="carpetas">
             @if (isset($carpetasFilles))
               @foreach ($carpetasFilles as $carpeta)
                 <div class="col-md-3">
@@ -103,11 +126,11 @@
                         </div>
                         <div class="card-body d-flex justify-content-center align-items-center">
                             @if (Str::endsWith($arxiu->nom, '.pdf'))
-                            <img src="{{asset('img/imagen_pdf.png')}}" id="arx" alt="carpeta"> 
+                            <img src="{{asset('img/imagen_pdf.png')}}" id="arx" alt="arxiu"> 
                             @elseif (Str::endsWith($arxiu->nom, '.docx'))
-                            <img src="{{asset('img/imagen_docx.png')}}" id="arx" alt="carpeta"> 
+                            <img src="{{asset('img/imagen_docx.png')}}" id="arx" alt="arxiu"> 
                             @elseif (Str::endsWith($arxiu->nom, '.png'))
-                            <img src="{{asset('img/imagen_png.png')}}" id="arx" alt="carpeta"> 
+                            <img src="{{asset('img/imagen_png.png')}}" id="arx" alt="arxiu"> 
                             @endif
                         </div>
                         </a>
@@ -202,11 +225,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h4>Estas segur que vols eliminar l'Arxiu?</h4>
+                            <h4>Estas segur que vols eliminar l'arxiu?</h4>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                            <button type="button" id="SielCarp" class="btn btn-success" data-carpeta-id="" @if(isset($id))data-pare-id="{{$id}}"@endif>Si</button>
+                            <button type="button" id="SielArx" class="btn btn-success" data-arxiu-id="" @if(isset($id))data-pare-id="{{$id}}"@endif>Si</button>
                         </div>
                 </div>
             </div>

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/navbar.js')}}"></script>
     <script defer type="module" src="{{ asset('js/panell.js') }}"></script>
+    <script src="{{ asset('js/navbar.js')}}"></script>
     <title>Panell de Control</title>
 </head>
 <body>
@@ -89,6 +89,7 @@
                                     <p>Creat: </p>
                                     <p>{{$empresaSelect->created_at}}</p>
                                     <button>Editar</button>
+                                    <button class="btn btn-danger" data-empresa-id="{{ $empresaSelect->empresa_id }}" id="accions" data-toggle="modal" data-target="#elimEmp">Eliminar</button>
                                 </div>
                                 @foreach($usuarisSelect as $usuari)
                                 <div class=col>
@@ -100,9 +101,9 @@
                                         <p>{{$usuari->updated_at}}</</p>
                                         <p>Dia de creacio: </p>
                                         <p>{{$usuari->created_at}}</p>
-                                        <button>Editar</button>
+                                        <button data-usuari-id="{{$usuari->id}}">Editar</button>
                                         @if($usuarisSelect->count() > 1)
-                                        <button class="btn-danger">Eliminar</button>
+                                        <button class="btn-danger" data-usuari-id="{{$usuari->id}}" data-toggle="modal" data-target="#elimUser" id="btneliminarUser">Eliminar</button>
                                         @endif
                                     </div>
                                 </div>
@@ -132,7 +133,6 @@
                                     <th>Usuari 1</th>
                                     <th>Usuari 2</th>
                                     <th>Usuari 3</th>
-                                    <th>Accions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,7 +144,7 @@
                                     @endphp
                                         @foreach($usuarisEmpresa as $usuari)
                                             @if($usuari->empresa_id == $empresa->empresa_id)
-                                            <td>Username: {{ $usuari->username }}</td>
+                                            <td>{{ $usuari->username }}</td>
                                             @endif
                                         @endforeach
                                         @if($usuarisEmpresa->count() < 2)
@@ -153,11 +153,6 @@
                                         @if($usuarisEmpresa->count() < 3)
                                             <td></td>
                                         @endif
-                                    <td>
-                                        <div class="row">
-                                            <button class="btn btn-danger" data-empresa-id="{{ $empresa->empresa_id }}" id="accions" data-toggle="modal" data-target="#elimEmp">Eliminar</button>
-                                        </div>
-                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -242,6 +237,28 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Tancar</button>
                             <button type="submit" id="afegir" class="btn btn-success">Afegir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal per la confirmacio d'eliminar empresa -->
+        <div class="modal fade" id="elimUser" tabindex="-1" role="dialog" aria-labelledby="elimUser" aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-color">
+                    <form id="eliminar-usuari" method="post" action="">
+                    @csrf
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Estas segur que vols eliminar l'usuari?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                            <button type="button" id="SielUser" class="btn btn-success" data-usuari-id="">Si</button>
                         </div>
                     </form>
                 </div>

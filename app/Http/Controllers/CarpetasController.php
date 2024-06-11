@@ -8,24 +8,29 @@ use App\Models\Empresa;
 use Illuminate\Support\Facades\Log;
 use App\Models\Arxius;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Logs;
+use Illuminate\Support\Facades\Auth;
 
 class CarpetasController extends Controller
 {
     public function mostrarCarpeta($id)
     {  
+        $empresas = Empresa::all();
+        $carpetas = Carpetas::where('empresa_id', Auth::user()->empresa_id);
         $carpetaPare = Carpetas::where('carpeta_id', $id)->first();
         $ruta = $carpetaPare->ruta;
         $empresa_id = $carpetaPare->empresa_id;
         $nomEmpresa = Empresa::where('empresa_id', $empresa_id)->first()->nom;
         $carpetasFilles = Carpetas::where('carpeta_Padre', $id)->get();
         $arxius = Arxius::where('carpeta_padre', $id)->get();
-        return view('vistaCarpeta', compact('carpetasFilles', 'ruta', 'nomEmpresa','id','arxius'));
+        return view('vistaCarpeta', compact('carpetasFilles', 'ruta', 'nomEmpresa','id','arxius', 'empresas', 'carpetas'));
     }
 
     public function carpetasEmpresa($id)
     {
+        $empresas = Empresa::all();
         $carpetasFilles = Carpetas::where('empresa_id', $id)->where('carpeta_Padre', NULL)->get();
-        return view('vistaCarpeta', compact('carpetasFilles'));
+        return view('vistaCarpeta', compact('carpetasFilles','empresas'));
     }
 
     public function crearCarpetas(Request $request){
@@ -53,10 +58,17 @@ class CarpetasController extends Controller
         } else {
             log::info("El directorio ya existe");
         }
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = Auth::user()->username . ' crea la carpeta ' . $nom . ' a la carpeta ' . $carpetaPare->nom;
+        $log->ipClient = request()->ip();
+        $log->save();
 
         $carpetasFilles = Carpetas::where('empresa_id', $request->id)->where('carpeta_Padre', $request->id)->get();
         $arxius = Arxius::where('carpeta_padre', $id)->get();
-        return view('vistaCarpeta', compact('carpetasFilles','id','arxius'));
+        return redirect()->route('carpetasMostrar', ['id' => $id]);
     }
 
     public function carpetasInici($id){
@@ -65,8 +77,18 @@ class CarpetasController extends Controller
     }
 
     public function carpetasElim(Request $request){
+        $nom = Carpetas::where('carpeta_id', $request->id)->first()->nom;
+        $missatge = Auth::user()->username . ' ha eliminat la carpeta ' . $nom . ' i les seves subcarpetas';
         $carpetas = Carpetas::where('carpeta_id', $request->id)->delete();
         $carpeta = Carpetas::where('carpeta_Padre', $request->id)->delete();
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = $missatge;
+        $log->ipClient = request()->ip();
+        $log->save();
+
         return response()->json(null, 200);
     }
 
@@ -104,7 +126,32 @@ class CarpetasController extends Controller
 
             $request->merge(['file' => $filename]);
         }
+        $nom = $carpeta->nom;
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = Auth::user()->username . ' ha pujat l\'arxiu ' . $file->getClientOriginalName() . ' a la carpeta ' . $nom;
+        $log->ipClient = request()->ip();
+        $log->save();
 
-        return view('vistaCarpeta', compact('carpetasFilles', 'ruta', 'nomEmpresa','id','arxius', 'carpeta'));
+        return redirect()->route('carpetasMostrar', ['id' => $id]);
+    }
+
+    function eliminarArxiu(Request $request){
+        $id = $request->id;
+        $arxiu = Arxius::where('arxiu_id', $id)->first();
+        $ruta = $arxiu->ruta;
+        $nom = $arxiu->nom;
+        $arxiu->delete();
+        unlink(base_path($ruta));
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = Auth::user()->username . ' ha eliminat l\'arxiu ' . $nom;
+        $log->ipClient = request()->ip();
+        $log->save();
+        return response()->json(null, 200);
     }
 }

@@ -19,7 +19,7 @@
                 <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
                 <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
-                <li class="nav-item"> <a href="{{ route('renta') }}">RENDA</a></li>
+                <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
                 <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
                 <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>
@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-8">
                 <h1>Buscador de Subvencions</h1>
-                <h2>Busca i troba totes les ajudes y subvencions en un sol buscador</h2>
+                <h2>Busca i troba totes les ajudes i subvencions en un sol buscador</h2>
                 <p>En Gracer sabem que les ajudes públiques i subvencions són benvingudes, i per això la necessitat d'estar atents perquè als nostres clients no se'ns escapi cap.</p>
                 <p>Per això, hem incorporat un potent cercador que et permetrà localitzar les ajudes o subvencions que puguin interessar-te, rebre alertes i tenir informació sobre la tramitació de les mateixes.</p>
                     

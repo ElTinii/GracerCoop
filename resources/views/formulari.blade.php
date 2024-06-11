@@ -4,7 +4,7 @@
 			content="text/html; charset=UTF-8">
 		<title>Formulari Renda</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./CSS/style.css">
+		<link rel="stylesheet" href="{{ asset('CSS/vistaAnonim.css') }}">
 		<link rel="stylesheet" type="text/css"
 			href="./Contact V17_files/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css"
@@ -112,7 +112,7 @@
                 <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
                 <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
-                <li class="nav-item"> <a href="{{ route('renta') }}">RENDA</a></li>
+                <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
                 <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
                 <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>
@@ -348,4 +348,8 @@
 				</div>
 			</div>
 		</div>
-	</body></html>
+	</body>
+	<footer>
+    <p>Politica de privacitat   Avis legal    Cookies    Contacte</p>
+</footer>
+	</html>

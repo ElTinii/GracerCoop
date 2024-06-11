@@ -42,7 +42,7 @@
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
          <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-            <h3>Empresas</h3>
+            <h3>Carpetas</h3>
             <!-- <li class="active">
                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-dashboard fa-stack-1x "></i></span><img src="{{asset('img/home_icon24.png')}}" alt=""> Home</a>
                 <ul class="nav-pills nav-stacked" style="list-style-type:none;">

@@ -59,12 +59,13 @@ Route::middleware('auth', 'verified', 'admin')->group(function () {
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
-    Route::get('/carpetas/{id}', [CarpetasController::class, 'mostrarCarpeta'])->name('carpetas');
+    Route::get('/carpetas/{id}', [CarpetasController::class, 'mostrarCarpeta'])->name('carpetasMostrar');
     Route::get('/carpetasEmpresa/{id}', [CarpetasController::class, 'carpetasEmpresa'])->name('carpetasEmpresa');
-    Route::post('/crearCarpeta', [CarpetasController::class, 'crearCarpetas'])->name('carpetas');
+    Route::post('/crearCarpeta', [CarpetasController::class, 'crearCarpetas'])->name('crearCarpetas');
     Route::get('/carpetasInici/{id}', [CarpetasController::class, 'carpetasInici'])->name('carpetas');
     Route::get('/carpetasDelete/{id}', [CarpetasController::class, 'carpetasElim'])->name('carpetas');
-    Route::post('/pujarFitxers', [CarpetasController::class, 'pujarFitxers'])->name('carpetas');
+    Route::post('/pujarFitxers', [CarpetasController::class, 'pujarFitxers'])->name('fitxerCarpetas');
+    Route::get('/eliminarArxiu/{id}', [CarpetasController::class, 'eliminarArxiu'])->name('eliminarArxiu');
     Route::get('/perfil', function () {
         return view('perfil');
     })->name('perfil');

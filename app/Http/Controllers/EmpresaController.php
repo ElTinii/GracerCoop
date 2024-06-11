@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\MiMailable;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Arxius;
 
 class EmpresaController extends Controller
 {
@@ -41,9 +42,16 @@ class EmpresaController extends Controller
             $log->accio = Auth::user()->username . ' elimina l\'empresa ' . $empresa->nom;
             $log->ipClient = request()->ip();
             $log->save();
+        $arxius = Arxius::where('empresa_id', $id)->delete();
         $carpetas = Carpetas::where('empresa_id', $id)->delete();
 
-        $usuarios = User::where('empresa_id', $id)->delete();
+        $usuarios = User::where('empresa_id', $id)->get();
+
+        foreach ($usuarios as $usuario) {
+            DB::table('logs')->where('client_id', $usuario->id)->delete();
+        }
+
+        User::where('empresa_id', $id)->delete();
 
         $empresa = Empresa::findOrFail($id)->delete();
 
@@ -101,7 +109,7 @@ class EmpresaController extends Controller
         ];
         //Enviem un correu amb les dades de l'usuari
         Mail::to($usuari->email)->send(new MiMailable($details));
-        return redirect()->route('empresa');
+        return redirect()->route('panel.show', ['id' => $empresa_id]);
     }
 
 }
