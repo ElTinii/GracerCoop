@@ -10,6 +10,7 @@
     <script defer type="module" src="{{ asset('js/panell.js') }}"></script>
     <script defer type="module" src="{{ asset('js/dragDrop.js') }}"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Part Privada</title>
 </head>
 <header>

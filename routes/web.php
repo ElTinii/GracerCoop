@@ -67,6 +67,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/carpetasDelete/{id}', [CarpetasController::class, 'carpetasElim'])->name('carpetas');
     Route::post('/pujarFitxers', [CarpetasController::class, 'pujarFitxers'])->name('fitxerCarpetas');
     Route::get('/eliminarArxiu/{id}', [CarpetasController::class, 'eliminarArxiu'])->name('eliminarArxiu');
+    Route::get('/descargarArchivo', [CarpetasController::class, 'descargar']);
     Route::get('/perfil', function () {
         return view('perfil');
     })->name('perfil');

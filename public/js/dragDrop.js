@@ -13,7 +13,7 @@ dropArea.addEventListener("drop", (event) => {
     dropArea.classList.remove("dragging");
     let files = event.dataTransfer.files;
     if (!(files === undefined)){
-        uploadFile(files);
+        uploadFile(files[0]);
     }
 });
 
@@ -26,14 +26,20 @@ function uploadFile(file) {
     if (validExtensions.includes(fileType)) {
         console.log("File uploaded");
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("fitxers", file);
+    let pathSegments = window.location.pathname.split('/');
+    let folderId = pathSegments[pathSegments.length - 1]; // Asume que el ID de la carpeta es el último segmento
+    formData.append("id", folderId);
 
 $.ajax({
-    url: '/penjarFitxers',
+    url: '/pujarFitxers',
     type: 'POST',
     data: formData,
     processData: false,
     contentType: false,
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
     success: function() {
         location.reload();
     },

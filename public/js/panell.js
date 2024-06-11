@@ -167,12 +167,12 @@ window.onload = function() {
     }
 };
 
-document.getElementById('descargar').addEventListener('click', function() {
-    let arxiuId = this.getAttribute('data-arxiu-id');
-    let url = `/ruta/a/tu/archivo/${arxiuId}`; // Reemplaza esto con la ruta a tu archivo
+// document.getElementById('descargar').addEventListener('click', function() {
+// let arxiuId = this.getAttribute('data-arxiu-id');
+// let url = `/descargarArchivo?id=${arxiuId}`;
 
-    let downloadLink = document.createElement('a');
-    downloadLink.href = url;
-    downloadLink.download = 'nombre_del_archivo'; // Reemplaza esto con el nombre de tu archivo
-    downloadLink.click();
-});
+// let downloadLink = document.createElement('a');
+// downloadLink.href = url;
+// downloadLink.download = ''; // Deja esto vacío, Laravel se encargará del nombre del archivo
+// downloadLink.click();
+// });

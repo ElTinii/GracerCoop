@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Logs;
 use Illuminate\Support\Facades\Auth;
 
+
 class CarpetasController extends Controller
 {
     public function mostrarCarpeta($id)
@@ -106,6 +107,11 @@ class CarpetasController extends Controller
         $id = $request->id;
         $carpeta = Carpetas::where('carpeta_id', $id)->first();
 
+        $fileName = $file->getClientOriginalName();
+        $existingFile = Arxius::where('nom', $fileName)->first();
+        if ($existingFile) {
+            return redirect()->back()->withErrors(['file' => 'Ya existe un archivo con este nombre.']);
+        }
         $ruta = $carpeta->ruta;
         $empresa_id = $carpeta->empresa_id;
         $nomEmpresa = Empresa::where('empresa_id', $empresa_id)->first()->nom;
@@ -153,5 +159,29 @@ class CarpetasController extends Controller
         $log->ipClient = request()->ip();
         $log->save();
         return response()->json(null, 200);
+    }
+
+    public function descargar(Request $request)
+    {
+        $arxiuId = $request->query('id');
+        $arxiu = Arxiu::find($arxiuId);
+    
+        if ($arxiu) {
+            $pathToFile = storage_path($arxiu->ruta);
+    
+            // Obtén el tipo de archivo
+            $fileType = File::mimeType($pathToFile);
+    
+            // Ajusta los encabezados según el tipo de archivo
+            $headers = ['Content-Type: '.$fileType];
+    
+            // Usa el nombre original del archivo para la descarga
+            $fileName = $arxiu->nom;
+            Log::info($fileName);
+    
+            return response()->download($pathToFile, $fileName, $headers);
+        } else {
+            return response()->json(['error' => 'Archivo no encontrado'], 404);
+        }
     }
 }
