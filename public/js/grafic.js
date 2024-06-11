@@ -19,9 +19,10 @@ let formatSetdies = setDies.toISOString().split('T')[0];
         y: yArray,
         mode:"lines"
       }];
+      let maxim = Math.max(yArray);
       const config = { displayModeBar: false };
       const layout = {
-        yaxis: {range: [0, 10]},
+        yaxis: {range: [0, maxim]},
         xaxis: {range: [formatSetdies, dataAvui], title: "Día del mes"},  
         title: "Acciones diarias de la empresa"
       };

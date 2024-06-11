@@ -76,6 +76,9 @@
                                 </ul>
                             </div>
                         @endif
+                        <div id="missatge">
+            
+                        </div>
                         @if(isset($empresaSelect) && isset($usuarisSelect))
                         <div id="empresaInfo">
                             <h4>Informacio de l'empresa</h4>

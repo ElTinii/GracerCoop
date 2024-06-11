@@ -53,6 +53,7 @@ Route::middleware('auth', 'verified', 'admin')->group(function () {
     Route::get('log/{id}', [PanelController::class, 'infoLog'])->name('log');
     Route::get('/missatges')->name('logs');
     Route::get('/panell', [PanelController::class, 'Mostrar'])->name('admin.dashboard');
+    Route::get('/eliminarUsuari/{id}', [EmpresaController::class, 'eliminarUsuari'])->name('eliminarUsuari');
 });
 
 //Aqui ponemos las rutas que necesitan estar verificadas con la session iniciada

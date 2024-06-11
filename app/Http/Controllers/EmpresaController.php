@@ -112,4 +112,19 @@ class EmpresaController extends Controller
         return redirect()->route('panel.show', ['id' => $empresa_id]);
     }
 
+    function eliminarUsuari(Request $request){
+        $id = $request->id;
+        $usuari = User::findOrFail($id);
+        $empresa_id = $usuari->empresa_id;
+        $log = new Logs();
+        $log->data = now()->format('Y-m-d');
+        $log->hora = now()->format('H:i:s');
+        $log->client_id = Auth::user()->id;
+        $log->accio = Auth::user()->username . ' elimina l\'usuari ' . $usuari->nom;
+        $log->ipClient = request()->ip();
+        $log->save();
+        $usuari->delete();
+        return redirect()->route('panel.show', ['id' => $empresa_id]);
+    }
+
 }

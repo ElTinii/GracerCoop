@@ -30,7 +30,9 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{route('admin.dashboard')}}">Home</a>
                         <a class="dropdown-item" href="{{ route('perfil') }}">Perfil</a>
+                        @if (Auth::user()->admin == 1)
                         <a class="dropdown-item" href="/panell">Panell de control</a>
+                        @endif
                         <a href="#" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Tancar sessió</a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"">
@@ -54,9 +56,9 @@
                <a class="nav-link" href="/empresas/{{$empresa->empresa_id}}">{{$empresa->nom}}</a>
             </li>
             @endforeach
-            @else
-            @foreach ($carpetas as $carpeta)
+            @elseif (Auth::user()->admin == 0)
             <h3 id="sidebar">Carpetas</h3>
+            @foreach ($carpetas as $carpeta)
                 <li>
                     <a href="/carpetas/{{$carpeta->id}}">{{$carpeta->nom}}</a>
                     @if ($carpeta->subcarpetas->count() > 0)
@@ -81,6 +83,9 @@
          <div class="container-fluid xyz">
         <div class="alert alert-danger" hidden="false" id="errors">
             
+        </div>
+        <div id="missatge" class="alert">
+
         </div>
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -136,6 +141,7 @@
                         </a>
                         <div class="card-footer text-right">
                             @if (!(is_null($arxiu->carpeta_padre)))
+                            <button class="btn-success" id="descargar" data-arxiu-id="{{$arxiu->arxiu_id}}">⬇️</button>
                             <button class="btn-danger" data-arxiu-id="{{$arxiu->arxiu_id}}" data-toggle="modal" data-target="#elimArx"><img src="{{asset('img/eliminar.png')}}" alt="" id="eliminar"></button>
                             @endif
                         </div>

@@ -10,6 +10,8 @@ $('#Siel').click(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(){
+        // Guarda el mensaje en localStorage antes de recargar
+        localStorage.setItem('message', 'Empresa eliminada correctament');
         console.log('Empresa eliminada correctament');
         window.location.href = '/empresas';
         },
@@ -48,31 +50,36 @@ $('#SielCarp').click(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(){
-            console.log('Carpeta eliminada correctament');
-            location.reload();
+        // Guarda el mensaje en localStorage antes de recargar
+        localStorage.setItem('message', 'Carpeta eliminada correctament');
+        console.log('Carpeta eliminada correctament');
+        location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown){
             // Código para ejecutar si la solicitud falló
+            missatge('Error al eliminar la carpeta', false);
             console.log(textStatus, errorThrown);
         }
     });
 });
 //Elimina la carpeta
-$('#SielCarp').click(function(){
-    let id = $(this).data('pare-id');
-    let carpeta_id = $(this).data('carpeta-id');
+$('#SielUser').click(function(){
+    let id = $(this).data('usuari-id');
+    console.log(id);
     $.ajax({
-        url: '/carpetasDelete/' + carpeta_id,
+        url: '/eliminarUsuari/' + id,
         type: 'GET',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(){
-            console.log('Usuari eliminar correctament');
+            localStorage.setItem('message', 'Usuari eliminat correctament');
+            console.log('Usuari eliminat correctament');
             location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown){
             // Código para ejecutar si la solicitud falló
+            missatge('Error al eliminar l\'Usuari', false);
             console.log(textStatus, errorThrown);
         }
     });
@@ -87,11 +94,14 @@ $('#SielArx').click(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(){
-            console.log('Arxiu eliminar correctament');
-            location.reload();
+        // Guarda el mensaje en localStorage antes de recargar
+        localStorage.setItem('message', 'Arxiu eliminat correctament');
+        console.log('Arxiu eliminar correctament');
+        location.reload();
         },
         error: function(jqXHR, textStatus, errorThrown){
             // Código para ejecutar si la solicitud falló
+            missatge('Error al eliminar l\'arxiu', false);
             console.log(textStatus, errorThrown);
         }
     });
@@ -127,10 +137,42 @@ $('#drop').click(function(){
     $('#drop').toggleClass('show');
 });
 
-$('#btneliminarUser').on('show.bs.modal', function (event) {
-    console.log('hola');
+$('#elimUser').on('show.bs.modal', function (event) {
     let button = $(event.relatedTarget);
-    let userId = button.data('carpeta-id');
+    let userId = button.data('usuari-id');
     let modal = $(this);
-    modal.find('#SielUser').data('carpeta-id', userId);
+    console.log(userId);
+    modal.find('#SielUser').data('usuari-id', userId);
+});
+
+function missatge($text, $tipus){
+    let missatge = document.getElementById('missatge');
+    let divClass = $tipus ? 'alert-success' : 'alert-danger';
+    missatge.innerHTML = $text;
+    missatge.classList.add('alert');
+    missatge.classList.add(divClass);
+    missatge.classList.remove('d-none');
+    setTimeout(function(){
+        missatge.classList.add('d-none');
+        missatge.classList.remove(divClass);
+    }, 5000);
+}
+// Comprueba si hay un mensaje en localStorage cuando se carga la página
+window.onload = function() {
+    let message = localStorage.getItem('message');
+    if (message) {
+        missatge(message, true);
+        // Borra el mensaje de localStorage para que no se muestre de nuevo
+        localStorage.removeItem('message');
+    }
+};
+
+document.getElementById('descargar').addEventListener('click', function() {
+    let arxiuId = this.getAttribute('data-arxiu-id');
+    let url = `/ruta/a/tu/archivo/${arxiuId}`; // Reemplaza esto con la ruta a tu archivo
+
+    let downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = 'nombre_del_archivo'; // Reemplaza esto con el nombre de tu archivo
+    downloadLink.click();
 });
