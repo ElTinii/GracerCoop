@@ -4,7 +4,7 @@
 			content="text/html; charset=UTF-8">
 		<title>Contacte</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./CSS/style.css">
+		<link rel="stylesheet" href="{{ asset('CSS/vistaAnonim.css') }}">
 		<link rel="stylesheet" type="text/css"
 			href="./Contact V17_files/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css"
@@ -104,54 +104,54 @@
 			  }
 		</style>
 		<header>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="navbar-collapse collapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a href="{{ url('indexEs') }}#QuiSom">QUIENES SOMOS?</a></li>
-                <li class="nav-item"><a href="{{ url('indexEs') }}#QueFem">QUÉ HACEMOS?</a></li>
-                <li class="nav-item"><a href="{{ url('indexEs') }}#ComHoFem">CÓMO LO HACEMOS?</a></li>
-                <li class="nav-item"><a href="{{ route('subvencionesEs') }}">SUBVENCIONES</a></li>
-                <li><a href="./index.html"><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
-                <li class="nav-item"> <a href="{{ route('rentaEs') }}">RENTA</a></li>
-                <li class="nav-item"><a href="{{ url('indexEs') }}#Clients">CLIENTES</a></li>
-                <li class="nav-item"><a href="">NOTICIAS</a></li>
-                <li class="nav-item"><a href="{{ route('clientsEs') }}">CONTACTO</a></li>
-                <li class="nav-item dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">IDIOMA</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ url('/') }}">Catalá</a>
-                        <a class="dropdown-item" href="#">Español</a>
-                    </div>
-                </li>
-                <li class="nav-item"><a href="{{ route('login') }}">AREA PRIVADA</a></li>
-            </ul>
-        </div>
-    </nav>
-</header>
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a href="{{ url('indexEs') }}#QuiSom">QUIENES SOMOS?</a></li>
+						<li class="nav-item"><a href="{{ url('indexEs') }}#QueFem">QUÉ HACEMOS?</a></li>
+						<li class="nav-item"><a href="{{ url('indexEs') }}#ComHoFem">CÓMO LO HACEMOS?</a></li>
+						<li class="nav-item"><a href="{{ route('subvencionesEs') }}">SUBVENCIONES</a></li>
+						<li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
+						<li class="nav-item"> <a href="{{ route('rentaEs') }}">RENTA</a></li>
+						<li class="nav-item"><a href="{{ url('indexEs') }}#Clients">CLIENTES</a></li>
+						<li class="nav-item"><a href="">NOTICIAS</a></li>
+						<li class="nav-item"><a href="{{ route('clientsEs') }}">CONTACTO</a></li>
+						<li class="nav-item dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">IDIOMA</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{ url('/') }}">Catalá</a>
+								<a class="dropdown-item" href="#">Español</a>
+							</div>
+						</li>
+						<li class="nav-item"><a href="{{ route('login') }}">AREA PRIVADA</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
 </head>
 	<body cz-shortcut-listen="true">
 		<div class="container-contact100">
 			<div class="wrap-contact100">
 				<form class="contact100-form validate-form" action="https://formsubmit.co/thos.vazquez.alex@gmail.com" method="POST">
-					<input type="hidden" name="_next" value="http://127.0.0.1:5500/contacte.html">
+					<input type="hidden" name="_next" value="http://gracercoop/contacte.html">
 					<input type="hidden" name="_captcha" value="false">
 					<span class="contact100-form-title">
-						Contactans
+					Contacta'ns
 					</span>
 					<label class="label-input100" for="first-name">Nom i cognoms</label>
 					<div class="wrap-input100 rs1-wrap-input100 validate-input"
 						data-validate="Type first name">
 						<input id="first-name" class="input100" type="text" name="first-name"
-							placeholder="Escriu aqui el nom">
+							placeholder="Escriu aquí el nom">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 rs2-wrap-input100 validate-input"
 						data-validate="Type last name">
 						<input class="input100" type="text" name="last-name"
-							placeholder="Escriu aqui el cognom">
+							placeholder="Escriu aquí el cognom">
 						<span class="focus-input100"></span>
 					</div>
-					<label class="label-input100" for="email">Correu electronic *</label>
+					<label class="label-input100" for="email">CORREU ELECTRÒNIC *</label>
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
 						<input id="email" class="input100" type="text" name="email"
@@ -168,7 +168,7 @@
 					<div class="wrap-input100 validate-input"
 						data-validate="Message is required">
 						<textarea id="message" class="input100" name="message"
-							placeholder="Escriu aqui el teu misssatge..."></textarea>
+							placeholder="Escriu aqui el teu missatge..."></textarea>
 						<span class="focus-input100"></span>
 					</div>
 					<div class=" validate-input"
@@ -203,10 +203,12 @@
 						</div>
 						<div class="flex-col size2">
 							<span class="txt1 p-b-20">
-								Contactans per aqui
+								Contacta'ns per aquí
 							</span>
 							<span class="txt3">
-								<img src="./recursos/whatsapp.png" id="whats" alt="">+34 616 771 103
+								<img src="./img/whatsapp.png" id="whats" alt="">+34 931 984 693 <br>
+								<img src="./img/telefonFixe.png" id="whats" alt="">+34 687 779 699 <br>
+								<img src="./img/llamar.png" id="whats" alt="">+34 616 771 103 
 							</span>
 						</div>
 					</div>
@@ -216,7 +218,7 @@
 						</div>
 						<div class="flex-col size2">
 							<span class="txt1 p-b-20">
-								O per aqui...
+								O per aquí...
 							</span>
 							<span class="txt3">
 								info@gracer.coop
@@ -227,4 +229,7 @@
 			</div>
 		</div>
 	</body>
-</html>
+	<footer>
+    <p>Politica de privacidad   Aviso legal    Cookies    Contacto</p>
+</footer>
+	</html>

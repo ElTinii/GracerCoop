@@ -12,7 +12,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/GRACER3.jfif') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="{{ asset('img/GracerLogo.jpg') }}" width="30" height="30" class="d-inline-block align-top" alt="">
             Gracer Coop
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

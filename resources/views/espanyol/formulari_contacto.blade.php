@@ -111,7 +111,7 @@
                 <li class="nav-item"><a href="./index.html#QueFem">QUÈ FEM?</a></li>
                 <li class="nav-item"><a href="./index.html#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="./subvencions.html">SUBVENCIONS</a></li>
-                <li><a href="./index.html"><img src="./recursos/GRACER3.jfif" alt="Logo"></a></li>
+				<li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
                 <li class="nav-item"> <a href="./renda.html">RENDA</a></li>
                 <li class="nav-item"><a href="./index.html#Clients">CLIENTS</a></li>
                 <li class="nav-item"><a href="">NOTICIES</a></li>

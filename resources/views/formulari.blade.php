@@ -5,6 +5,7 @@
 		<title>Formulari Renda</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="{{ asset('CSS/vistaAnonim.css') }}">
+		<script defer type="module" src="{{ asset('js/mostrar.js') }}"></script>
 		<link rel="stylesheet" type="text/css"
 			href="./Contact V17_files/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css"
@@ -22,7 +23,6 @@
 			href="./Contact V17_files/daterangepicker.css">
 		<link rel="stylesheet" type="text/css" href="./Contact V17_files/util.css">
 		<link rel="stylesheet" type="text/css" href="./Contact V17_files/main.css">
-
 		<meta name="robots" content="noindex, follow">
 		<script type="text/javascript" async
 			src="./Contact V17_files/analytics.js.descarga"
@@ -111,9 +111,9 @@
                 <li class="nav-item"><a href="{{ url('/') }}#QueFem">QUI SOM?</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
-                <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+				<li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
                 <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
+                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENT@S</a></li>
                 <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
                 <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>
                 <li class="nav-item dropdown">
@@ -131,6 +131,17 @@
 </head>
 	<body cz-shortcut-listen="true">
 		<div class="container-contact100">
+			<div class="wrap-contact100 divForm">
+			<h5 class="textForm">Complimenta el següent formulari en línia amb les teves dades. Amb la
+				informació fiscal i personal que ens hagis facilitat, el teu assessor
+				analitzarà les diferents opcions, aplicant les deduccions i reduccions que
+				et corresponguin, buscant el millor resultat possible per a tu. Tot això
+				ocorrerà en permanent contacte amb tu, aclarint-te tots els dubtes que
+				puguin sorgir-te sobre aquest tema.
+				Quan ja tinguem el resultat final i tu el decideixis, presentarem la
+				declaració en l'Agència Tributària i t'enviarem el justificant per correu
+				electrònic.</h5>
+			</div>
 			<div class="wrap-contact100">
 				<form class="contact100-form validate-form" action="https://formsubmit.co/thos.vazquez.alex@gmail.com" method="POST">
 					<input type="hidden" name="_next" value="http://127.0.0.1:5500/formulari_contacte.html">
@@ -164,24 +175,24 @@
 							placeholder="Ex. +34 101010101">
 						<span class="focus-input100"></span>
 					</div>
-                    <label class="label-input100" for="direccio">Direccio Completa*</label>
+                    <label class="label-input100" for="direccio">Direcció Completa*</label>
 					<div class="wrap-input100 validate-input">
 						<input id="direccio" class="input100" type="text" name="direccio"
 							placeholder="C\ ">
 						<span class="focus-input100"></span>
 					</div>
-                    <label class="label-input100" for="DNI">DNI*</label>
+                    <label class="label-input100" for="DNI">DNI/NIE*</label>
 					<div class="wrap-input100 validate-input">
 						<input id="DNI" class="input100" type="text" name="DNI"
 							placeholder="00000000P">
 						<span class="focus-input100"></span>
 					</div>
-                    <label class="label-input100" for="dataDNI">Data de caducitat del DNI*</label>
+                    <label class="label-input100" for="dataDNI">Data de caducitat del DNI/NIE*</label>
 					<div class="wrap-input100 validate-input">
 						<input id="dataDNI" class="input100" type="date" name="dataDNI">
 						<span class="focus-input100"></span>
 					</div>
-					<label class="label-input100" for="trobat">HAS TREBALLAT PER MÉS D’UNA EMPRESA</label>
+					<label class="label-input100" for="trobat">HAS TREBALLAT PER MÉS D’UNA EMPRESA L’ANY ANTERIOR</label>
                     <div class="wrap-input100 validate-input">
                         <select class="input100" name="Treballar mes d'una empresa" id="trobat">
                             <option value="" selected disabled>Seleccioni una opció</option>
@@ -199,7 +210,7 @@
                         </select>
                         <span class="focus-input100"></span>
                     </div>
-                    <label class="label-input100" for="venut">Has venut algun inmoble l'any anterior</label>
+                    <label class="label-input100" for="venut">Has venut algun immoble l'any anterior</label>
                     <div class="wrap-input100 validate-input">
                         <select class="input100" name="Venut inmoble" id="venut">
                             <option value="" selected disabled>Seleccioni una opció</option>
@@ -208,7 +219,7 @@
                         </select>
                         <span class="focus-input100"></span>
                     </div>
-                    <label class="label-input100" for="autonom">Has sigut autonom l'any anterior</label>
+                    <label class="label-input100" for="autonom">HAS SIGUT AUTÒNOM/A L'ANY ANTERIOR</label>
                     <div class="wrap-input100 validate-input">
                         <select class="input100" name="Autonom" id="autonom">
                             <option value="" selected disabled>Seleccioni una opció</option>
@@ -263,7 +274,7 @@
                         <select class="input100" name="" id="contactem">
                             <option value="" selected disabled>Seleccioni una opció</option>
                             <option value="whatsapp">WhatsApp</option>
-							<option value="telefon">Telefon</option>
+							<option value="telefon">Telèfon</option>
                             <option value="email">Email</option>    
                         </select>
                         <span class="focus-input100"></span>
@@ -286,17 +297,19 @@
 							placeholder="Introdueix el codig de descompte">
 						<span class="focus-input100"></span>
 					</div>
-					<label class="label-input100" for="message">Missatge *</label>
-					<div class="wrap-input100 validate-input"
-						data-validate="Message is required">
+					<label class="label-input100" for="message">Missatge</label>
+					<div class="wrap-input100 validate-input">
 						<textarea id="message" class="input100" name="message"
 							placeholder="Escriu aqui el teu misssatge..."></textarea>
 						<span class="focus-input100"></span>
 					</div>
 					<div class=" validate-input"
 						data-validate="Message is required">
+						<div>
 						<input type="checkbox" name="politica" id="politica">
-						<label class="" for="politica">Accepto la política de protecció de dades</label>
+						<label class="" for="politica">He llegit la <a id="alertPolitica">Política de Privacitat</a> i
+						Accepto el tractament de les meves dades personals.</label>
+						</div>
 					</div>
 					<div class="container-contact100-form-btn">
 						<button type="submit" class="contact100-form-btn">
@@ -315,7 +328,7 @@
 								Vols contactar amb nosaltres?
 							</span>
 							<span class="txt2">
-								Contacta clicant <a href="./contacte.html">aquí</a>.
+								Contacta clicant <a href="{{ route('contacto') }}">aquí</a>.
 							</span>
 						</div>
 					</div>
@@ -328,7 +341,9 @@
 								També pots trucar-nos
 							</span>
 							<span class="txt3">
-								<img src="./recursos/whatsapp.png" id="whats" alt="">+34 616 771 103
+								<img src="./img/whatsapp.png" id="whats" alt="">+34 931 984 693 <br>
+								<img src="./img/telefonFixe.png" id="whats" alt="">+34 687 779 699 <br>
+								<img src="./img/llamar.png" id="whats" alt="">+34 616 771 103 
 							</span>
 						</div>
 					</div>
@@ -350,6 +365,6 @@
 		</div>
 	</body>
 	<footer>
-    <p>Politica de privacitat   Avis legal    Cookies    Contacte</p>
-</footer>
+    	<p><a href="{{asset('/resources/Politica de privacitat/POLITICAS_DE_PRIVACIDAD.pdf')}}">Politica de privacitat</a>   Avis legal    Cookies    Contacte</p>
+	</footer>
 	</html>

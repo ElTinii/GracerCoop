@@ -11,6 +11,7 @@ class SeederUsuaris extends Seeder
     /**
      * Run the database seeds.
      */
+    // Per executar aquest seeder s'ha d'execura aquesta comanda php artisan db:seed --class=SeederUsuaris
     public function run(): void
     {
 

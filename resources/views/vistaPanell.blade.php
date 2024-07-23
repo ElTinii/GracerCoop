@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/GRACER3.jfif') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="{{ asset('img/GracerLogo.jpg') }}" width="30" height="30" class="d-inline-block align-top" alt="">
             Gracer Coop
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,6 +53,9 @@
                <a href="/empresas"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span><img src="{{asset('img/icon_empresa.png')}}" alt=""> Empresas</a>
             </li>
             <li>
+                <a href="/rendaMod"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span><img src="{{asset('img/modificar.png')}}" alt=""> Modificar Renda</a>
+            </li>
+            <li>
                <a href="/logs"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span><img src="{{asset('img/log_icon.png')}}" alt="">Logs</a>
             </li>
             <li>
@@ -75,8 +78,9 @@
                                     <li><a href="/empresas">Seleccionar una empresa</a><br></li>
                                 </ul>
                             </li>
-                            <li><a href="">Logs</a><br></li>
-                            <li><a href="">Missatge</a><br></li>
+                            <li><a href="/rendaMod"> Modificar renda</a></li>
+                            <li><a href="/logs">Logs</a><br></li>
+                            <li><a href="/missatges">Missatge</a><br></li>
                             <li>
                                 <ul>
                                     <li><a href="">Enviar missatge</a><br></li>

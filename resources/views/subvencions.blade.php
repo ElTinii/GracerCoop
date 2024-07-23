@@ -18,7 +18,7 @@
                 <li class="nav-item"><a href="{{ url('/') }}#QueFem">QUI SOM?</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
-                <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+                <li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
                 <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
                 <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
@@ -39,15 +39,15 @@
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <h1>Buscador de Subvencions</h1>
-                <h2>Busca i troba totes les ajudes i subvencions en un sol buscador</h2>
-                <p>En Gracer sabem que les ajudes públiques i subvencions són benvingudes, i per això la necessitat d'estar atents perquè als nostres clients no se'ns escapi cap.</p>
-                <p>Per això, hem incorporat un potent cercador que et permetrà localitzar les ajudes o subvencions que puguin interessar-te, rebre alertes i tenir informació sobre la tramitació de les mateixes.</p>
+                <h1>Cercador de Subvencions</h1>
+                <h2>Totes les ajudes i subvencions en un sol cercador</h2>
+                <p>En Gracer sabem que les ajudes públiques i subvencions són benvingudes i, per això, la necessitat d'estar atents perquè als nostres clients no se'ns escapi cap.</p>
+                <p>Per aquest motiu, hem incorporat un potent cercador que et permetrà localitzar les ajudes o subvencions que puguin interessar-te, rebre alertes i tenir informació sobre la tramitació de les mateixes.</p>
                     
                 
                 <a href="https://gracercoop-subvencions.fandit.es/subvenciones">
                     <button class="contact100-form-btn">
-                        Access
+                        ACCÉS 
                     </button>
                 </a>
             </div>
@@ -57,8 +57,8 @@
             </div>
         </div>
     </div>
-    <footer>
-        <p>Politica de privacitat   Avis legal    Cookies    Contacte</p>
-    </footer>
+	<footer>
+    	<p><a href="{{asset('/resources/Politica de privacitat/POLITICAS_DE_PRIVACIDAD.pdf')}}">Politica de privacitat</a>   Avis legal    Cookies    Contacte</p>
+	</footer>
 </body>
 </html>

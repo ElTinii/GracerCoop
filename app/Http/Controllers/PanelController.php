@@ -22,6 +22,7 @@ class PanelController extends Controller
         //Validamos los datos recibidos en el formulario
         $request->validate([
             'nom' => 'required|string|max:30',
+            'cif' => 'required|string|max:9',
             'correu' => 'required|string|email|unique:users,email|max:100',
         ], [
             'nom.required' => 'El camp nom es obligatori.',
@@ -34,10 +35,11 @@ class PanelController extends Controller
 
         //Comprobamos que el nombre de la empresa no contenga insercion de codigo
         $nom = htmlspecialchars($request->nom);
-
+        $cif = htmlspecialchars($request->cif);
         //Creamos la empresa con los datos recibidos en el formulario
         $empresa = new Empresa();
         $empresa->nom = $nom;
+        $empresa->cif = $cif;
         $empresa->save();
 
 

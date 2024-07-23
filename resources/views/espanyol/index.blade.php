@@ -17,7 +17,7 @@
                 <li class="nav-item"><a href="{{ url('indexEs') }}#QueFem">QUÉ HACEMOS?</a></li>
                 <li class="nav-item"><a href="{{ url('indexEs') }}#ComHoFem">CÓMO LO HACEMOS?</a></li>
                 <li class="nav-item"><a href="{{ route('subvencionesEs') }}">SUBVENCIONES</a></li>
-                <li><a href="./index.html"><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+                <li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
                 <li class="nav-item"> <a href="{{ route('rentaEs') }}">RENTA</a></li>
                 <li class="nav-item"><a href="{{ url('indexEs') }}#Clients">CLIENTES</a></li>
                 <li class="nav-item"><a href="">NOTICIAS</a></li>
@@ -25,8 +25,8 @@
                 <li class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">IDIOMA</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ url('/') }}">Catalá</a>
-                        <a class="dropdown-item" href="#">Español</a>
+                        <a class="dropdown-item" href="{{ url('/') }}">CATALÁN</a>
+                        <a class="dropdown-item" href="#">EESPAÑOL</a>
                     </div>
                 </li>
                 <li class="nav-item"><a href="{{ route('login') }}">AREA PRIVADA</a></li>

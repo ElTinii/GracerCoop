@@ -17,7 +17,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
-            <img src="{{ asset('img/GRACER3.jfif') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+            <img src="{{ asset('img/GracerLogo.jpg') }}" width="30" height="30" class="d-inline-block align-top" alt="">
             Gracer Coop
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,9 @@
             </li>
             <li>
                <a href="/empresas"><span class="fa-stack fa-lg pull-left"><i class="fa fa-flag fa-stack-1x "></i></span><img src="{{asset('img/icon_empresa.png')}}" alt=""> Empresas</a>
+            </li>
+            <li>
+                <a href="/rendaMod"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-cart-plus fa-stack-1x "></i></span><img src="{{asset('img/modificar.png')}}" alt=""> Modificar Renda</a>
             </li>
             <li>
                <a href="/logs"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cloud-download fa-stack-1x "></i></span><img src="{{asset('img/log_icon.png')}}" alt="">Logs</a>
@@ -179,9 +182,11 @@
                         </div>
                         <div class="modal-body">
                             <label for="nom">Nom de l'empresa</label>
-                            <input type="text" name="nom" id="formu" :value="old('nom')">
+                            <input type="text" name="nom" id="formu" :value="old('nom')" placeholder="Escriu el nom de l'empresa">
+                            <label for="cif">CIF de l'empresa</label>
+                            <input type="text" name="cif" id="formu" placeholder="Escriu el CIF de l'empresa" maxlength="9">
                             <label for="correu">Correu electronic</label>
-                            <input type="email" name="correu" id="formu" :value="old('correu')">
+                            <input type="email" name="correu" id="formu" :value="old('correu')" placeholder="Escriu de l'empresa">
                             @error('correu')
                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
                             @enderror

@@ -111,9 +111,9 @@
                 <li class="nav-item"><a href="{{ url('/') }}#QueFem">QUI SOM?</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
-                <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+				<li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
                 <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
+                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENT@S</a></li>
                 <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
                 <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>
                 <li class="nav-item dropdown">
@@ -136,22 +136,22 @@
 					<input type="hidden" name="_next" value="http://gracercoop/contacte.html">
 					<input type="hidden" name="_captcha" value="false">
 					<span class="contact100-form-title">
-						Contactans
+					Contacta'ns
 					</span>
 					<label class="label-input100" for="first-name">Nom i cognoms</label>
 					<div class="wrap-input100 rs1-wrap-input100 validate-input"
 						data-validate="Type first name">
 						<input id="first-name" class="input100" type="text" name="first-name"
-							placeholder="Escriu aqui el nom">
+							placeholder="Escriu aquí el nom">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 rs2-wrap-input100 validate-input"
 						data-validate="Type last name">
 						<input class="input100" type="text" name="last-name"
-							placeholder="Escriu aqui el cognom">
+							placeholder="Escriu aquí el cognom">
 						<span class="focus-input100"></span>
 					</div>
-					<label class="label-input100" for="email">Correu electronic *</label>
+					<label class="label-input100" for="email">CORREU ELECTRÒNIC *</label>
 					<div class="wrap-input100 validate-input"
 						data-validate="Valid email is required: ex@abc.xyz">
 						<input id="email" class="input100" type="text" name="email"
@@ -168,7 +168,7 @@
 					<div class="wrap-input100 validate-input"
 						data-validate="Message is required">
 						<textarea id="message" class="input100" name="message"
-							placeholder="Escriu aqui el teu misssatge..."></textarea>
+							placeholder="Escriu aqui el teu missatge..."></textarea>
 						<span class="focus-input100"></span>
 					</div>
 					<div class=" validate-input"
@@ -203,10 +203,12 @@
 						</div>
 						<div class="flex-col size2">
 							<span class="txt1 p-b-20">
-								Contactans per aqui
+								Contacta'ns per aquí
 							</span>
 							<span class="txt3">
-								<img src="./recursos/whatsapp.png" id="whats" alt="">+34 616 771 103
+								<img src="./img/whatsapp.png" id="whats" alt="">+34 931 984 693 <br>
+								<img src="./img/telefonFixe.png" id="whats" alt="">+34 687 779 699 <br>
+								<img src="./img/llamar.png" id="whats" alt="">+34 616 771 103 
 							</span>
 						</div>
 					</div>
@@ -216,7 +218,7 @@
 						</div>
 						<div class="flex-col size2">
 							<span class="txt1 p-b-20">
-								O per aqui...
+								O per aquí...
 							</span>
 							<span class="txt3">
 								info@gracer.coop
@@ -228,6 +230,6 @@
 		</div>
 	</body>
 	<footer>
-    <p>Politica de privacitat   Avis legal    Cookies    Contacte</p>
-</footer>
+    	<p><a href="{{asset('/resources/Politica de privacitat/POLITICAS_DE_PRIVACIDAD.pdf')}}">Politica de privacitat</a>   Avis legal    Cookies    Contacte</p>
+	</footer>
 	</html>

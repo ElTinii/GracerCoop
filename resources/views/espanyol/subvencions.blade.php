@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./Contact V17_files/main.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{ asset('CSS/vistaAnonim.css') }}">
-    <title>Subvencions</title>
+    <title>Subvenciones</title>
 </head>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -18,7 +18,7 @@
                 <li class="nav-item"><a href="{{ url('indexEs') }}#QueFem">QUÉ HACEMOS?</a></li>
                 <li class="nav-item"><a href="{{ url('indexEs') }}#ComHoFem">CÓMO LO HACEMOS?</a></li>
                 <li class="nav-item"><a href="{{ route('subvencionesEs') }}">SUBVENCIONES</a></li>
-                <li><a href="./index.html"><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+                <li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
                 <li class="nav-item"> <a href="{{ route('rentaEs') }}">RENTA</a></li>
                 <li class="nav-item"><a href="{{ url('indexEs') }}#Clients">CLIENTES</a></li>
                 <li class="nav-item"><a href="">NOTICIAS</a></li>
@@ -34,20 +34,19 @@
             </ul>
         </div>
     </nav>
-</header>   
+</header>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-8">
-                <h1>Buscador de Subvencions</h1>
-                <h2>Busca i troba totes les ajudes y subvencions en un sol buscador</h2>
-                <p>En Gracer sabem que les ajudes públiques i subvencions són benvingudes, i per això la necessitat d'estar atents perquè als nostres clients no se'ns escapi cap.</p>
-                <p>Per això, hem incorporat un potent cercador que et permetrà localitzar les ajudes o subvencions que puguin interessar-te, rebre alertes i tenir informació sobre la tramitació de les mateixes.</p>
-                    
+                <h1>Buscador de Subvenciones</h1>
+                <h2>Todas las ayudas y subvenciones en un solo buscador</h2>
+                <p>En Gracer sabemos que las ayudas públicas y subvenciones son bienvenidas y, por eso, es necesario estar atentos para que a nuestros clientes no se les escape ninguna.</p>
+                <p>Por este motivo, hemos incorporado un potente buscador que te permitirá localizar las ayudas o subvenciones que puedan interesarte, recibir alertas y tener información sobre la tramitación de las mismas.</p>
                 
-                <a href="https://gracercoop-subvencions.fandit.es/subvenciones">
+                <a href="https://gracercoop-subvenciones.fandit.es/subvenciones">
                     <button class="contact100-form-btn">
-                        Access
+                        ACCESO 
                     </button>
                 </a>
             </div>
@@ -58,7 +57,7 @@
         </div>
     </div>
     <footer>
-        <p>Politica de privacitat   Avis legal    Cookies    Contacte</p>
+        <p><a href="{{asset('/resources/Politica de privacitat/POLITICAS_DE_PRIVACIDAD.pdf')}}">Política de privacidad</a>   Aviso legal    Cookies    Contacto</p>
     </footer>
 </body>
 </html>

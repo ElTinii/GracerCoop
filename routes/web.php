@@ -9,6 +9,7 @@ use App\Http\Controllers\PanelController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Middleware\AdminMiddle;
 use App\Http\Controllers\CarpetasController;
+use App\Http\Controllers\rendaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +55,8 @@ Route::middleware('auth', 'verified', 'admin')->group(function () {
     Route::get('/missatges')->name('logs');
     Route::get('/panell', [PanelController::class, 'Mostrar'])->name('admin.dashboard');
     Route::get('/eliminarUsuari/{id}', [EmpresaController::class, 'eliminarUsuari'])->name('eliminarUsuari');
+    Route::get('/rendaMod', [rendaController::class, 'mostrarRenda'])->name('rendaMod');
+    Route::post('/editarRenda', [rendaController::class, 'editarRenda'])->name('editarRenda');
 });
 
 //Aqui ponemos las rutas que necesitan estar verificadas con la session iniciada

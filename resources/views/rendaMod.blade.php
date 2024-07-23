@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
-    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+    <script defer type="module" src="{{ asset('js/panell.js')}}"></script>
     <link href="{{ asset('css/vistas.css') }}" rel="stylesheet">
     <script src="{{ asset('js/navbar.js')}}"></script>
-    <script defer type="module" src="{{ asset('js/panell.js') }}"></script>
+    <script defer type="module" src="{{ asset('js/grafic.js')}}"></script>
     <title>Panell de Control</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
             <img src="{{ asset('img/GracerLogo.jpg') }}" width="30" height="30" class="d-inline-block align-top" alt="">
             Gracer Coop
@@ -42,7 +41,7 @@
                 </li>
             </ul>
         </div>
-</nav>
+    </nav>
    <div id="wrapper">
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
@@ -64,54 +63,59 @@
             </li>
          </ul>
       </div>
-        <div id="page-content-wrapper">
-            <div class="container-fluid xyz">
-                <div class="row">
-                    <div class="col">   
-                        <h1>Logs</h1>
-                        <div>
-                        @if(isset($log))
-                        <div>
-                            <h4>Informacio dels logs</h4>
-                            <div class="col">
-                                <p>Client: {{$nomUser}}</p>
-                                <p>Accio: {{$log->accio}}</p>
-                                <p>Data: {{$log->data}}</p>
-                                <p>Hora: {{$log->hora}}</p>
-                                <p>IP: {{$log->ipClient}}</p>
+   <div id="page-content-wrapper">
+         <div class="container-fluid xyz">
+            <div class="row">
+                <div class="col">
+                    <h1>Modificar Renda</h1>
+                    <div class="row">
+                        @foreach ($datosRenda as $renda)
+                        <div class="col-2 renda-box">
+                            <div class="renda-content">
+                                <div class="renda-header">
+                                    <h5>{{ $renda->nom }}</h5>
+                                    <button class="editar" data-toggle="modal" data-target="#editarRenda" data-id="{{ $renda->id }}" data-nom="{{ $renda->nom}}" data-preu="{{ $renda->preu}}"><img src="{{ asset('img/editar.png') }}" alt="Editar"></button>
+                                </div>
+                                <p class="renda-price">{{ $renda->preu }}€</p>
                             </div>
                         </div>
-                        @endif
-                        </div>
-                        <table id="myTable">
-                            <thead>
-                                <tr>
-                                    <th>Client Id</th>
-                                    <th>Acció</th>
-                                    <th>Data</th>
-                                    <th>Hora</th>
-                                    <th>Ip client</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($logs as $log)
-                                <tr class="clickable-row" data-log-id="{{$log->log_id}}" id="filaLogs{{$log->log_id}}">
-                                    <td>{{ $log->client_id }}</td>
-                                    <td>{{ $log->accio }}</td>
-                                    <td>{{$log->data}}</td>
-                                    <td>{{$log->hora}}</td>
-                                    <td>{{$log->ipClient}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        @endforeach
                     </div>
                 </div>
             </div>
+         </div>
+      </div>
+   </div>
+   </div>
+
+   <div class="modal fade" id="editarRenda" tabindex="-1" role="dialog" aria-labelledby="editarRenda" aria-hidden="true" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-color">
+                    <form id="afegir-empresa" method="post" action="/editarRenda">
+                    @csrf
+                        <div class="modal-header">
+                            <h2>Modificar preu</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" name="id" class="id" hidden>
+                            <label for="nom">Nom de l'oferta</label>
+                            <input type="text" name="nom" id="formu" class="nom" disabled>
+                            <label for="correu">Preu</label>
+                            <input type="text" name="preu" id="formu" class="preu">
+                            @error('correu')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tancar</button>
+                            <button type="submit" id="afegir" class="btn btn-success">Afegir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-        <script>
-            let table = new DataTable('#myTable');
-        </script>
 </body>
 </html>

@@ -176,3 +176,16 @@ window.onload = function() {
 // downloadLink.download = ''; // Deja esto vacío, Laravel se encargará del nombre del archivo
 // downloadLink.click();
 // });
+
+$('#editarRenda').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Botón que activó el modal
+    var id = button.data('id'); // Extraer el valor del atributo data-id
+    var titol = button.data('nom'); // Extraer el valor del atributo data-titol
+    var text = button.data('preu'); // Extraer el valor del atributo data-text
+
+    // Actualizar los campos de entrada en el modal
+    var modal = $(this);
+    modal.find('.modal-body .id').val(id);
+    modal.find('.modal-body .nom').val(titol);
+    modal.find('.modal-body .preu').val(text);
+});

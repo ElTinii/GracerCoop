@@ -17,10 +17,10 @@
                 <li class="nav-item"><a href="{{ url('/') }}#QueFem">QUI SOM?</a></li>
                 <li class="nav-item"><a href="{{ url('/') }}#ComHoFem">COM HO FEM?</a></li>
                 <li class="nav-item"><a href="{{ route('subvenciones') }}">SUBVENCIONS</a></li>
-                <li><a ><img src="{{ asset('img/GRACER3.jfif') }}" alt="Logo"></a></li>
+                <li><a ><img src="{{ asset('img/GracerLogo.jpg') }}" alt="Logo"></a></li>
                 <li class="nav-item"> <a href="{{ route('renda') }}">RENDA</a></li>
-                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENTS</a></li>
-                <li class="nav-item"><a href="{{ route('noticias') }}">NOTICIES</a></li>
+                <li class="nav-item"><a href="{{ url('/') }}#Clients">CLIENT@S</a></li>
+                <li class="nav-item"><a href="{{ route('noticias') }}">NOTÍCIES</a></li>
                 <li class="nav-item"><a href="{{ route('contacto') }}">CONTACTE</a></li>
                 <li class="nav-item dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">IDIOMA</a>
@@ -37,7 +37,7 @@
 <body>
     <div id="inici">
         <div id="slogan" class="dreta">
-            <h1>LA TEVA TRANQUILITAT, LA NOSTRA PRIORITAT: <br>
+            <h1>LA TEVA TRANQUILITAT, LA NOSTRA PRIORITAT <br>
                 Assessoria propera i de confiança</h1>
         </div>
     </div>
@@ -46,19 +46,21 @@
             <div>
                 <h1>Qui som?</h1>
             </div>
-            <p>Som un equip de professionals amb gran experiència en el món de l&#39;empresa, la consultoria,
-                l&#39;assessoria i la formació que després de diferents col·laboracions decidim organitzar-nos
-                formant GRACER COOP. Una Societat Cooperativa de Treballat Associat sense ànim de lucre
-                per creure en aquest model d&#39;empresa per ser les persones l&#39;actiu principal. Apostem per
-                l&#39;Economia Social com a model empresarial sostenible i generador d&#39;ocupació.
-                El nostre assessorament empresarial entès com a servei d&#39;acompanyament a persones que
-                volen construir empreses transformant idees i il·lusions en realitat.
-                Els nostres clients són empreses i organitzacions de l&#39;àmbit cooperatiu i social, PYMES i
+            <p>Som un equip de professionals amb gran experiència en el món de
+                l'empresa, la consultoria, l'assessoria i la formació que després de
+                diferents col·laboracions decidim organitzar-nos formant GRACER
+                COOP. Una Societat Cooperativa de Treball Associat sense ànim de
+                lucre per creure en aquest model d'empresa per ser les persones l'actiu
+                principal. Apostem per l'Economia Social com a model empresarial
+                sostenible i generador d'ocupació. El nostre assessorament empresarial
+                entès com a servei d'acompanyament a persones que volen construir
+                empreses transformant idees i il·lusions en realitat. Els nostres clients són
+                empreses i organitzacions de l'àmbit cooperatiu i social, PYMES i
                 autònoms.</p>
         </div>
     </div>
     <div id="QueFem">
-        <h1>Que fem?</h1>
+        <h1 class="titolMarge">Què fem?</h1>
         <div class="row align-items-stretch">
             <div class="container-fluid">
                 <div class="row">
@@ -149,8 +151,8 @@
                                 <li>Declaració Impost Transmissions patrimonials</li>
                                 <li>Certificats Digitals</li>
                                 <li>Requeriments Hisenda</li>
-                                <li>Assessorament en temes fiscals</li>
-                                <li>Assessorament en temes laboral</li>
+                                <li>Assessorament fiscal i laboral</li>
+                                <li>Prestacions i pensions</li>
                                 <li>Subvencions</li>
                             </ul>
                         </div>
@@ -159,21 +161,28 @@
             </div>
         </div>
     </div>
-    <div class="row principal centrem" id="ComHoFem">
-        <div class="cercle">
+    <div class="row principal" id="ComHoFem">
+        <div class="row">
+            <div class="col-8 imgComHoFem padding">
+            </div>
+            <div class="col-4 padding" id="Fem4">
             <h1>Com ho fem?</h1>
-        </div>
-            <div class="pad">
-            <p>La nostra diferenciació es basa en la nostra expertesa i proximitat amb el client. En
-                l&#39;especialització en Cooperatives. En un assessorament integral a empreses, aportant valor
-                mitjançant els nostres serveis. Un marcat perfil Social, posem a les persones en primer pla,
-                entenent la fortalesa de la col·laboració amb l&#39;entorn sent la cooperació, la igualtat, el respecte
-                i el treball conjunt de les nostres bases d&#39;actuació.
-                Creiem en models canviants i adaptats a la societat per a cobrir necessitats existents amb
-                innovació, creativitat i generació de valor.</p>
+            <p>La nostra diferenciació es basa en la nostra expertesa i proximitat amb el
+                    client. En l'especialització en Cooperatives i entitats socials. En un
+                    assessorament integral a empreses i persones, aportant valor mitjançant
+                    els nostres serveis. Un marcat perfil Social, posem a les persones en primer
+                    pla, entenent la fortalesa de la col·laboració amb l'entorn sent la
+                    cooperació, la igualtat, el respecte i el treball conjunt de les nostres bases
+                    d'actuació. Creiem en models canviants i adaptats a la societat per a
+                    cobrir necessitats existents amb innovació, creativitat i generació de
+                    valors.
+                </p>
+            </div>
         </div>
     </div>
-        <h1>Clients</h1>
+
+    <div class="container-fluid">
+    <h1 class="titolMarge">Client@s</h1>
         <div id="Clients" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -221,8 +230,9 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
+          </div>
 </body>
 <footer>
-    <p>Politica de privacitat   Avis legal    Cookies    Contacte</p>
+    	<p><a href="{{asset('/resources/Politica de privacitat/POLITICAS_DE_PRIVACIDAD.pdf')}}">Politica de privacitat</a>   Avis legal    Cookies    Contacte</p>
 </footer>
 </html>
